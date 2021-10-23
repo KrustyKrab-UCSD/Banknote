@@ -1,4 +1,4 @@
-# What In The Wallet
+# Banknote
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -89,9 +89,9 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+<img src=https://user-images.githubusercontent.com/58927442/138538318-a14999b2-f647-4134-95fd-817ad14f47ca.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538340-7a08fe64-2e58-4656-a491-9795c5a0da90.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538351-0cb36f25-20c8-4a8e-9f99-1fbbc0d110d5.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538360-8f869e00-a5ab-466c-92e9-75d262948f96.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538365-2a92cfb9-8f51-47ec-9adc-31314d6509b5.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538375-f8f05503-534d-4b86-9dad-74e41a26717a.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538386-88283847-1c53-4368-8e00-f734ce76ef30.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538409-b8ef166e-cf32-4703-b84a-8a49950e5005.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538417-5dc7b2b2-bf14-410d-a75d-c8de9897056a.png width=250>
 
 ### [BONUS] Interactive Prototype
 
