@@ -57,6 +57,15 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
 * Settings Screen
     * User can view and change settings
 
+* News Screen
+    * User can scroll through financially relevant news
+
+* Add a new Account Screen
+    * User can link a new bank account to view in Accounts Screen
+
+* Bank Selection Screen
+    * User can see a list of the most popular banks in the US.
+
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
@@ -64,28 +73,40 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
 * Accounts Screen
 * Spending Analysis Screen
 * Settings Screen
+* News Screen (Optional)
 
 **Flow Navigation** (Screen to Screen)
 
 * Log In Screen
    * => Accounts Screen
+   * => Registration Screen
  
 * Registration Screen
    * => Accounts Screen
+   * => Log In Screen
  
 * Accounts Screen
    * => Individual Account Screen
    * => Settings Screen
    * => Spending Analysis Screen
+   * => News Screen (Optional)
    
 * Settings Screen
    * => Accounts Screen
+   * => Add a new Account Screen
 
 * Spending Analysis Screen
-    * => Accounts Screen
+   * => Accounts Screen
 
 * Individual Account Screen
-    * => None
+   * => Accounts Screen
+
+* Add a new Account Screen
+   * => Settings Screen
+   * => Bank Selection Screen
+
+* Bank Selection Screen
+    * => Add a new Account Screen
 
 ## Wireframes
 <img src=images/basic_wireframe.png width=800>
