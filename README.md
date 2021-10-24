@@ -119,7 +119,52 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+#### User
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | username      | String   | Name of user|
+   | password      | String   | password    |
+   | push notifs   | Boolean  | allows push |
+   
+#### Account
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | user          | Pointer to User | User associated with acct |
+   | bank          | String   | Name of bank |
+   | account number| Number   | Account number|
+   | account password| String | Account password|
+   | balance       | Number   | Balance of account |
+   | transactions  | [Pointer to Transaction] | Transactions associated with account |
+
+
+#### Transaction 
+   | Property      | Type     | Description         |
+   | ------------- | -------- | ------------------- |
+   | account       | Pointer to Account | Account associated with transaction |
+   | date          | DateTime | date of transaction |
+   | balance       | Number   | dollar amount of transaction|
+   | isSpending    | Boolean  | is transaction positive/negative |
+   
+#### Article 
+   | Property      | Type     | Description         |
+   | ------------- | -------- | ------------------- |
+   | headline      | String   | headline of news article |
+   | content       | String   | content of news article  |
+   | category      | String   | category of news article |
+   | creation date | DateTime | creation date of news article |
+
+#### Summary
+   | Property      | Type     | Description |
+   | ------------- | -------- | ----------- |
+   | date          | DateTime | date of summary |
+   | spending      | [Pointer to Account] | total of all spending |
+   | income        | [Pointer to Account] | total of all income |
+    
+#### Analysis 
+   | Property      | Type     | Description |
+   | ------------- | -------- | ----------- | 
+   | summaries     | [Pointer to Summary]| summaries for analysis |
+   | type          | Number   | 0 = day, 1 = weekly, 2 = monthly |
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
