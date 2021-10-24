@@ -121,7 +121,6 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
 #### User
    | Property      | Type     | Description |
@@ -169,7 +168,51 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
    | ------------- | -------- | ----------- | 
    | summaries     | [Pointer to Summary]| summaries for analysis |
    | type          | Number   | 0 = day, 1 = weekly, 2 = monthly |
+   
 ### Networking
-- [Add list of network requests by screen ]
+#### Registration Screen
+   | CRUD      | HTTP Verb     | Example |
+   | ------------- | -------- | ----------- | 
+   | Create     | POST | create user |
+
+#### Accounts Screen
+   | CRUD      | HTTP Verb     | Example |
+   | ------------- | -------- | ----------- | 
+   | Read     | GET | get all accounts |
+
+#### Add a New Account Screen
+   | CRUD      | HTTP Verb     | Example |
+   | ------------- | -------- | ----------- | 
+   | Create     | POST | create account |
+   
+   
+#### Individual Account Screen
+   | CRUD      | HTTP Verb     | Example |
+   | ------------- | -------- | ----------- | 
+   | Read       | GET  | get information on an account |
+   | Delete     | DELETE | delete account     |
+   | Create     | POST   | create transaction |
+   | Read       | GET    | get transaction |
+   | Update     | PUT  | update transaction |
+   | Delete     | DELETE | delete transaction |
+   
+#### Spending Analysis Screen
+   | CRUD      | HTTP Verb     | Example |
+   | ------------- | -------- | ----------- | 
+   | Read     | GET | get analysis |
+   | Update     | PUT | update analysis |
+   
+#### Settings Screen
+   | CRUD      | HTTP Verb     | Example |
+   | ------------- | -------- | ----------- | 
+   | Update     | PUT | update user push preference |
+
+#### Optional News Screen
+   | CRUD      | HTTP Verb     | Example |
+   | ------------- | -------- | ----------- | 
+   | Create     | POST | create news articles (from API) |
+   | Read     | GET | get all news articles |
+   | Update     | PUT | update news article |
+   | Delete     | DELETE | delete news article(s) |
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
