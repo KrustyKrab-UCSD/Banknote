@@ -201,6 +201,7 @@ private void registerUser(String username, String password) {
 		   | ------------- | -------- | ----------- | 
 		   | Read     | GET | get all accounts |
 
+
 ```Java
 protected void queryAccounts() {
 	ParseQuery<Account> query = ParseQuery.getQuery(Account.class);
@@ -224,6 +225,7 @@ protected void queryAccounts() {
    | CRUD      | HTTP Verb     | Example |
    | ------------- | -------- | ----------- | 
    | Create     | POST | create account |
+
 
 ```Java
 protected void postAccount(ParseUser currentUser, String name, 
