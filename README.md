@@ -262,7 +262,7 @@ protected void postAccount(ParseUser currentUser, String name, Long accountNumbe
 
 ```Java
 /* Getting information on an account */ 
-// needs more thought
+// subject to change
 protected void queryAccount() {
 	ParseQuery<Account> query = ParseQuery.getQuery("accountName");
 	query.getInBackground("accountId", new GetCallback<Account>() {
@@ -299,7 +299,7 @@ protected void postTransaction(Account account, String date, Long balance, boole
 }
 
 /* Getting a transaction */ 
-// needs more thought
+// subject to change
 protected void queryAccount() {
 	ParseQuery<Transaction> query = ParseQuery.getQuery("transactionName");
 	query.getInBackground("transactionId", new GetCallback<Transaction>() {
@@ -313,7 +313,7 @@ protected void queryAccount() {
 }
 
 /* Updating a transaction */ 
-// needs more thought
+// subject to change
 ParseQuery<Transaction> query = ParseQuery.getQuery("transactionName");
 // Retrieve the object by id
 query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Transaction>() {
@@ -340,11 +340,55 @@ transaction.deleteInBackground();
    | ------------- | -------- | ----------- | 
    | Read     | GET | get analysis |
    | Update     | PUT | update analysis |
+
+```Java
+/* Getting an analysis */ 
+// subject to change
+ParseQuery<Analysis> query = ParseQuery.getQuery("analysis");
+query.getInBackground("analysisID", new GetCallback<Analysis>() {
+	public void done(Analysis analysis, ParseException e) {
+		if (e != null) {
+		  // something went wrong 
+		} 
+		// Do the magic here
+	}
+});
+
+/* Updating an analysis */ 
+// subject to change
+ParseQuery<Analysis> query = ParseQuery.getQuery("analysis");
+// Retrieve the object by id
+query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Analysis>() {
+	public void done(Analysis analysis, ParseException e) {
+		if (e != null) {
+			// something went wrong	
+		}
+	analysis.put("type", 2);
+	analysis.saveInBackground();
+	}
+});
+```
    
 #### Settings Screen
    | CRUD      | HTTP Verb     | Example |
    | ------------- | -------- | ----------- | 
    | Update     | PUT | update user push preference |
+
+```Java
+/* Updating Settings */ 
+// subject to change
+ParseQuery<Setting> query = ParseQuery.getQuery("setting");
+// Retrieve the object by id
+query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Setting>() {
+	public void done(Setting setting, ParseException e) {
+		if (e != null) {
+			// something went wrong	
+		}
+	setting.put("push_preference", true);
+	setting.saveInBackground();
+	}
+});
+```
 
 #### Optional News Screen
    | CRUD      | HTTP Verb     | Example |
