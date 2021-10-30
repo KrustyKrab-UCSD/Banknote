@@ -197,9 +197,9 @@ private void registerUser(String username, String password) {
 ``` 
 
 #### Accounts Screen
-		   | CRUD      | HTTP Verb     | Example |
-		   | ------------- | -------- | ----------- | 
-		   | Read     | GET | get all accounts |
+   | CRUD      | HTTP Verb     | Example |
+   | ------------- | -------- | ----------- | 
+   | Read     | GET | get all accounts |
 
 
 ```Java
@@ -228,8 +228,7 @@ protected void queryAccounts() {
 
 
 ```Java
-protected void postAccount(ParseUser currentUser, String name, 
-						   Long accountNumber, String password, Long balance) {
+protected void postAccount(ParseUser currentUser, String name, Long accountNumber, String password, Long balance) {
 	Account account = new Account();
 	account.setUser(currentUser);
 	account.setBankName(name);
