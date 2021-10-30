@@ -175,16 +175,78 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
    | ------------- | -------- | ----------- | 
    | Create     | POST | create user |
 
+
+```Java
+private void registerUser(String username, String password) {
+	ParseUser user = new ParseUser();
+	user.setUsername(username);
+	user.setPassword(password);
+	user.signUpInBackground(new SignUpCallback() {
+		@Override
+		public void done(ParseException e) {
+			if (e != null) {
+				// Toast : "Failed to Register your credentials"
+				Log.e(TAG, "Issue with signing up", e);
+				return;
+			}
+				// Toast : "Welcome!"
+			    // go to main activity
+		}
+	});
+}
+``` 
+
 #### Accounts Screen
-   | CRUD      | HTTP Verb     | Example |
-   | ------------- | -------- | ----------- | 
-   | Read     | GET | get all accounts |
+		   | CRUD      | HTTP Verb     | Example |
+		   | ------------- | -------- | ----------- | 
+		   | Read     | GET | get all accounts |
+
+```Java
+protected void queryAccounts() {
+	ParseQuery<Account> query = ParseQuery.getQuery(Account.class);
+	query.findInBackground(new FindCallback<Post>() {
+		@Override
+		public void done(List<Account> accounts, ParseException e) {
+			if (e != null) {
+				Log.e(TAG, "Issue with getting accounts", e);
+				return;
+			}
+			// allAccounts is input for an adapter
+			allAccounts.addAll(account);
+			// adapter in onViewCreated() for AccountsFragment.java
+			adapter.notifyDataSetChanged();
+		}
+	});
+}
+``` 
 
 #### Add a New Account Screen
    | CRUD      | HTTP Verb     | Example |
    | ------------- | -------- | ----------- | 
    | Create     | POST | create account |
-   
+
+```Java
+protected void postAccount(ParseUser currentUser, String name, 
+						   Long accountNumber, String password, Long balance) {
+	Account account = new Account();
+	account.setUser(currentUser);
+	account.setBankName(name);
+	account.setAccountNumber(accountNumber);
+	account.setAccountPassword(password);
+	account.setAccountBalance(balance);
+	account.saveInBackground(new SaveCallback() {
+		@Override
+		public void done(ParseException e) {
+			if (e != null) {
+				Log.e(TAG, "Error while saving", e);
+				// Toast: "Could not add account."
+			}
+			Log.i(TAG, "Post save was successful!");
+			// Maybe clear out text views
+		}
+	});
+}
+``` 
    
 #### Individual Account Screen
    | CRUD      | HTTP Verb     | Example |
