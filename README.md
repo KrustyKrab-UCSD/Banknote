@@ -259,6 +259,82 @@ protected void postAccount(ParseUser currentUser, String name, Long accountNumbe
    | Update     | PUT  | update transaction |
    | Delete     | DELETE | delete transaction |
    
+
+```Java
+/* Getting information on an account */ 
+// needs more thought
+protected void queryAccount() {
+	ParseQuery<Account> query = ParseQuery.getQuery("accountName");
+	query.getInBackground("accountId", new GetCallback<Account>() {
+		public void done(Account account, ParseException e) {
+			if (e != null) {
+			  // something went wrong 
+			} 
+			// Do the magic here
+		}
+	});
+}
+
+/* Deleting an account */ 
+account.deleteInBackground();
+   
+/* Creating a transaction */ 
+protected void postTransaction(Account account, String date, Long balance, boolean isSpending) {
+	Transaction transaction = new Transaction();
+	account.setAccount(account);
+	account.setDate(date);
+	account.setBalance(balance);
+	account.setSpending(isSpending);
+	account.saveInBackground(new SaveCallback() {
+		@Override
+		public void done(ParseException e) {
+			if (e != null) {
+				Log.e(TAG, "Error while saving", e);
+				// Toast: "Could not add transaction."
+			}
+			Log.i(TAG, "Save was successful!");
+			// Maybe clear out text views
+		}
+	});
+}
+
+/* Getting a transaction */ 
+// needs more thought
+protected void queryAccount() {
+	ParseQuery<Transaction> query = ParseQuery.getQuery("transactionName");
+	query.getInBackground("transactionId", new GetCallback<Transaction>() {
+		public void done(Transaction transaction, ParseException e) {
+			if (e != null) {
+			  // something went wrong 
+			} 
+			// Do the magic here
+		}
+	});
+}
+
+/* Updating a transaction */ 
+// needs more thought
+ParseQuery<Transaction> query = ParseQuery.getQuery("transactionName");
+// Retrieve the object by id
+query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Transaction>() {
+	public void done(Transaction transaction, ParseException e) {
+		if (e != null) {
+			// something went wrong	
+		}
+	// Now let's update it with some new data. In this case, only balance and isSpending
+	// will get sent to your Parse Server. date hasn't changed.
+	transaction.put("balance", 100.00);
+	transaction.put("isSpending", false);
+	transaction.saveInBackground();
+	}
+});
+
+
+/* Deleting a transaction */ 
+transaction.deleteInBackground();
+
+```
+
 #### Spending Analysis Screen
    | CRUD      | HTTP Verb     | Example |
    | ------------- | -------- | ----------- | 
@@ -277,5 +353,6 @@ protected void postAccount(ParseUser currentUser, String name, Long accountNumbe
    | Read     | GET | get all news articles |
    | Update     | PUT | update news article |
    | Delete     | DELETE | delete news article(s) |
+
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
