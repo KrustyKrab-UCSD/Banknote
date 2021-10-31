@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banknote">
         <activity
+            android:name=".CreateAccount"
+            android:exported="true" />
+        <activity
+            android:name=".Accounts"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
