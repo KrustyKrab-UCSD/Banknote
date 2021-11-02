@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="Sign up for [NAME]"
+            android:text="Sign up for Banknote"
             android:textColor="@color/black"
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="parent"
