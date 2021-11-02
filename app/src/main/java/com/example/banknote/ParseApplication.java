@@ -2,11 +2,9 @@ package com.example.banknote;
 
 import android.app.Application;
 
+import com.example.banknote.Models.AccountUser;
 import com.parse.Parse;
-import com.parse.ParseObject;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
+import com.parse.ParseUser;
 
 public class ParseApplication extends Application {
     @Override
@@ -25,6 +23,9 @@ public class ParseApplication extends Application {
 
         // set applicationId, and server server based on the values in the back4app settings.
         // any network interceptors must be added with the Configuration Builder given this syntax
+
+        ParseUser.registerSubclass(AccountUser.class);
+
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("GJ0NAqhqnj7PMOsBhOaC4c0Sf0hJaSMLmCui9wr0")
                 .clientKey("sV0WFiQyp3F4BRwXTMTK1vBm8rw7TY18ZCUIgYwA")

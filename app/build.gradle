@@ -5,6 +5,9 @@ plugins {
 android {
     compileSdk 31
 
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.example.banknote"
         minSdk 21
@@ -25,6 +28,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
@@ -38,4 +44,6 @@ dependencies {
 
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.25.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
+
+    implementation 'com.android.databinding:compiler:3.5.1'
 }
