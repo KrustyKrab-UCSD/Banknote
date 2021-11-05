@@ -45,17 +45,15 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
                 // fragment names subject to change
                 switch (item.getItemId()) {
-                    case R.id.action_accounts:
-                        // fragment = new AccountsFragment();
+                    case R.id.action_settings:
+                        fragment = new SettingsFragment();
                         break;
                     case R.id.action_analysis:
                         // fragment = new AnalysisFragment();
                         break;
-                    case R.id.action_settings:
-                        // fragment = new SettingsFragment();
-                        break;
+                    case R.id.action_accounts:
                     default:
-                        // fragment = new AccountsFragment();
+                        fragment = new AccountsFragment();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();

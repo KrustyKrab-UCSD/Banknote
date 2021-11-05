@@ -1,0 +1,43 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Account">
+
+        <EditTextPreference
+            app:key="profileEdit"
+            app:title="Edit profile"
+            app:useSimpleSummaryProvider="false" />
+
+        <ListPreference
+            app:defaultValue="false"
+            app:key="passwordEdit"
+            app:title="Change password"
+            app:useSimpleSummaryProvider="false" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="isPush"
+            android:title="Push notifications" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="More"/>
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="edit_text_preference_1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="About us" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="edit_text_preference_2"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Privacy Policy" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="edit_text_preference_3"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Terms and Conditions" />
+
+</PreferenceScreen>

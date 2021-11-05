@@ -14,16 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banknote">
         <activity
+            android:name=".NewAccountActivity"
+            android:exported="true" />
+        <activity
             android:name=".BankSelectionActivity"
             android:exported="false" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".CreateAccount"
-            android:exported="true" />
-        <activity
-            android:name=".Accounts"
-            android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
