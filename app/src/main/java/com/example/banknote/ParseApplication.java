@@ -2,8 +2,11 @@ package com.example.banknote;
 
 import android.app.Application;
 
+import com.example.banknote.Models.Account;
 import com.example.banknote.Models.AccountUser;
+import com.example.banknote.Models.Bank;
 import com.parse.Parse;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class ParseApplication extends Application {
@@ -25,6 +28,8 @@ public class ParseApplication extends Application {
         // any network interceptors must be added with the Configuration Builder given this syntax
 
         ParseUser.registerSubclass(AccountUser.class);
+        ParseObject.registerSubclass(Account.class);
+        ParseObject.registerSubclass(Bank.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("GJ0NAqhqnj7PMOsBhOaC4c0Sf0hJaSMLmCui9wr0")

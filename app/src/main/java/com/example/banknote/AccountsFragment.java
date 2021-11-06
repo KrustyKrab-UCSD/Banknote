@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.banknote.Models.Account;
+import com.example.banknote.databinding.FragmentAccountsBinding;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -30,20 +31,23 @@ import java.util.List;
  */
 public class AccountsFragment extends Fragment {
 
-    private AccountsAdapter adapter;
     public static final String TAG = "AccountsFragment";
+    private FragmentAccountsBinding binding;
+
+    private AccountsAdapter adapter;
+
     private RecyclerView rvAccounts;
     private Button btnAddAccount;
     private List<Account> allAccounts;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+//    // TODO: Rename parameter arguments, choose names that match
+//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+//    private static final String ARG_PARAM1 = "param1";
+//    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+//    // TODO: Rename and change types of parameters
+//    private String mParam1;
+//    private String mParam2;
 
     public AccountsFragment() {
         // Required empty public constructor
@@ -60,32 +64,33 @@ public class AccountsFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static AccountsFragment newInstance(String param1, String param2) {
         AccountsFragment fragment = new AccountsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_accounts, container, false);
+        binding = FragmentAccountsBinding.inflate(inflater,container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         rvAccounts = view.findViewById(R.id.rvAccounts);
         allAccounts = new ArrayList<>();
         btnAddAccount = view.findViewById(R.id.btnAddAccount);
@@ -116,6 +121,7 @@ public class AccountsFragment extends Fragment {
                 // allAccounts is input for an adapter
                 allAccounts.addAll(accounts);
                 // adapter in onViewCreated() for AccountsFragment.java
+                Log.d(TAG, allAccounts.get(0).getAccountName());
                 adapter.notifyDataSetChanged();
             }
         });

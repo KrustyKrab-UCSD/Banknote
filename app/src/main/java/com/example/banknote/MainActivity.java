@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 // uninitialize once fragments are set up
-                Fragment fragment = null;
+                Fragment fragment = new AccountsFragment();
                 // fragment names subject to change
                 switch (item.getItemId()) {
                     case R.id.action_settings:

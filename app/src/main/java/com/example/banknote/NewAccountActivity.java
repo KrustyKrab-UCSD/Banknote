@@ -98,7 +98,7 @@ public class NewAccountActivity extends AppCompatActivity {
     private void saveAccount(String accountName, String bankName, String accountPassword, Long accountNumber, Long balance, ParseUser currentUser) {
         Account account = new Account();
         account.setAccountName(accountName);
-        account.setBankName(bankName);
+        account.setBank(bankName);
         account.setAccountNumber(accountNumber);
         account.setPassword(accountPassword);
         account.setBalance(balance);
