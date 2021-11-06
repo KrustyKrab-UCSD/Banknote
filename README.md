@@ -400,3 +400,9 @@ query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Setting>() {
 
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+
+### Build Progress
+
+#### Registration and Login Screens
+
+<img src='https://i.imgur.com/nq80RfO.gif' title='Registration and login screen walkthrough' height='480' alt='Registration and login screen walkthrough' />
