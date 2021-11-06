@@ -25,17 +25,18 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
 
 **Required Must-have Stories**
 
-* User can login/create an account to login to the app
-* User can link bank account(s) to app
-* Utilize bank APIs for account information
-* Weekly/monthly analysis (charts and graphs) of spending and budgeting of all accounts
-* Record different kinds of currency
-* log in password to protect the security
+* - [x] User can login to an account in the app
+* - [x] User can register an account within the app
+* - [ ] User can link bank account(s) to app
+* - [ ] Weekly/monthly analysis (charts and graphs) of spending and budgeting of all accounts
+* - [ ] Record different kinds of currency
+* - [ ] User can change their password 
 
 **Optional Nice-to-have Stories**
 
-* Link news articles concerning the market and other finance related topics. 
-* Have an education section with quick links to useful YouTube videos.
+* - [ ] Link news articles concerning the market and other finance related topics. 
+* - [ ] Have an education section with quick links to useful YouTube videos.
+* - [ ] Utilize bank APIs for account information
 
 ### 2. Screen Archetypes
 
