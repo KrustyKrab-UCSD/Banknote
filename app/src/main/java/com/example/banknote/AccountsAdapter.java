@@ -23,7 +23,7 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvAccountName = itemView.findViewById(R.id.etAccountName);
+            tvAccountName = itemView.findViewById(R.id.tvAccountName);
         }
 
         public void bind(Account account) {

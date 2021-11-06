@@ -1,5 +1,6 @@
 package com.example.banknote;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.banknote.Models.Account;
 import com.parse.FindCallback;
@@ -31,6 +33,7 @@ public class AccountsFragment extends Fragment {
     private AccountsAdapter adapter;
     public static final String TAG = "AccountsFragment";
     private RecyclerView rvAccounts;
+    private Button btnAddAccount;
     private List<Account> allAccounts;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -85,11 +88,20 @@ public class AccountsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvAccounts = view.findViewById(R.id.rvAccounts);
         allAccounts = new ArrayList<>();
+        btnAddAccount = view.findViewById(R.id.btnAddAccount);
         adapter = new AccountsAdapter(getContext(), allAccounts);
 
         rvAccounts.setAdapter(adapter);
         rvAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
         queryAccounts();
+
+        btnAddAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), NewAccountActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     protected void queryAccounts() {

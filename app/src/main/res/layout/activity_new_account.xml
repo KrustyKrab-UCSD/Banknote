@@ -9,12 +9,20 @@
     tools:context=".NewAccountActivity">
 
     <EditText
-        android:id="@+id/etAccountName"
+        android:id="@+id/tvAccountName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/ubuntu_regular"
         android:minHeight="48dp"
         tools:text="Account Name..." />
+
+    <EditText
+        android:id="@+id/etAccountPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_regular"
+        android:minHeight="48dp"
+        tools:text="Account Password..." />
 
     <EditText
         android:id="@+id/etBankName"
@@ -23,6 +31,14 @@
         android:fontFamily="@font/ubuntu_regular"
         android:minHeight="48dp"
         tools:text="Bank Name..." />
+
+    <EditText
+        android:id="@+id/etAccountNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_regular"
+        android:minHeight="48dp"
+        tools:text="Account Number..." />
 
     <EditText
         android:id="@+id/etBalance"

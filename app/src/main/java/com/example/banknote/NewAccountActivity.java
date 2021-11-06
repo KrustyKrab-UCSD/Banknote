@@ -15,13 +15,13 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.util.List;
-
 public class NewAccountActivity extends AppCompatActivity {
 
     private EditText etAccountName;
     private EditText etBankName;
     private EditText etBalance;
+    private EditText etAccountPassword;
+    private EditText etAccountNumber;
     private Button btnCreateAccount;
     public static final String TAG = "NewAccountActivity";
 
@@ -31,7 +31,9 @@ public class NewAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_account);
 
-        etAccountName = findViewById(R.id.etAccountName);
+        etAccountName = findViewById(R.id.tvAccountName);
+        etAccountPassword = findViewById(R.id.etAccountPassword);
+        etAccountNumber = findViewById(R.id.etAccountNumber);
         etBankName = findViewById(R.id.etBankName);
         etBalance = findViewById(R.id.etBalance);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
@@ -45,38 +47,60 @@ public class NewAccountActivity extends AppCompatActivity {
                     return;
                 }
 
+                String accountPassword = etAccountPassword.getText().toString();
+                if (accountPassword.isEmpty()) {
+                    Toast.makeText(NewAccountActivity.this, "Account password can't be empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String bankName = etBankName.getText().toString();
                 if (bankName.isEmpty()) {
                     Toast.makeText(NewAccountActivity.this, "Bank name can't be empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                String accountNumberString = etAccountNumber.getText().toString();
+                if (accountNumberString.isEmpty()) {
+                    Toast.makeText(NewAccountActivity.this, "Account number can't be empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Long accountNumber;
+                try {
+                    accountNumber = Long.parseLong(accountNumberString);
+                }
+                catch (NumberFormatException e) {
+                    Toast.makeText(NewAccountActivity.this, "Account number is invalid!", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error in parsing account number", e);
+                    return;
+                }
+
                 String balanceString = etBalance.getText().toString();
-                double balance = 0.00;
+                Long balance = (long) 0;
 
                 if (!balanceString.isEmpty()) {
                     try {
-                        balance = Double.parseDouble(balanceString);
+                        balance = Long.parseLong(balanceString);
                     }
                     catch (NumberFormatException e) {
                         Toast.makeText(NewAccountActivity.this, "Balance is invalid!", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "Error in parseing balance", e);
+                        Log.e(TAG, "Error in parsing balance", e);
                         return;
                     }
                 }
 
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                saveAccount(accountName, bankName, balance, currentUser);
-                goMainActivity();
+                saveAccount(accountName, bankName, accountPassword, accountNumber, balance, currentUser);
             }
         });
 
     }
 
-    private void saveAccount(String accountName, String bankName, double balance, ParseUser currentUser) {
+    private void saveAccount(String accountName, String bankName, String accountPassword, Long accountNumber, Long balance, ParseUser currentUser) {
         Account account = new Account();
         account.setAccountName(accountName);
         account.setBankName(bankName);
+        account.setAccountNumber(accountNumber);
+        account.setPassword(accountPassword);
         account.setBalance(balance);
         account.setUser(currentUser);
         account.saveInBackground(new SaveCallback() {
@@ -85,8 +109,10 @@ public class NewAccountActivity extends AppCompatActivity {
                 if (e != null) {
                     Log.e(TAG, "Error while saving", e);
                     Toast.makeText(NewAccountActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 Log.i(TAG, "Account save was successful!");
+                goMainActivity();
             }
         });
     }
