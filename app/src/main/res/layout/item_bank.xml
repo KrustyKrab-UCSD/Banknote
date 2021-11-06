@@ -25,16 +25,16 @@
             app:layout_constraintHorizontal_bias="0.045"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/chase" />
+            tools:srcCompat="@drawable/chase" />
 
         <TextView
-            android:id="@+id/etBankName"
+            android:id="@+id/tvBankName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="JPMorgan Chase &amp; Co."
+            tools:text="JPMorgan Chase &amp; Co."
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
