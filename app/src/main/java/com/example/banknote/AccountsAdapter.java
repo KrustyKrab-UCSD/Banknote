@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.banknote.Models.Account;
+import com.example.banknote.databinding.ItemAccountBinding;
 
 import java.util.List;
 
@@ -19,15 +21,21 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.ViewHo
     private List<Account> accounts;
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvAccountName;
+        private ItemAccountBinding binding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvAccountName = itemView.findViewById(R.id.etAccountName);
+        public ViewHolder(@NonNull ItemAccountBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
         public void bind(Account account) {
-            tvAccountName.setText(account.getAccountName());
+            binding.tvAccountName.setText(account.getAccountName());
+            binding.container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, account.getAccountName() + " clicked!", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
@@ -39,8 +47,9 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_account, parent, false);
-        return new ViewHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ItemAccountBinding binding = ItemAccountBinding.inflate(layoutInflater, parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override

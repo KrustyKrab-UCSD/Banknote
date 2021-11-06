@@ -30,4 +30,15 @@
         <item name="fontFamily">@font/ubuntu_medium</item>
         <item name="iconTint">@color/white</item>
     </style>
+
+    <style name="SettingsHeaderText" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/ubuntu_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="SettingsItemText" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/ubuntu_medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

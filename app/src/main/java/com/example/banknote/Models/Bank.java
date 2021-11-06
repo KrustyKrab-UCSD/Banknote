@@ -14,7 +14,7 @@ public class Bank extends ParseObject {
         return getString(KEY_NAME);
     }
 
-    public void setDescription(String name) {
+    public void setName(String name) {
         put(KEY_NAME, name);
     }
 

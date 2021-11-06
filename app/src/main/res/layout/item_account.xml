@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/etAccountName"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:fontFamily="@font/ubuntu_regular"
-        android:gravity="center_vertical"
-        android:textSize="28sp"
-        tools:text="Chase checking" />
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_account"
+        android:layout_marginVertical="10dp">
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:id="@+id/ivBankImage"
+            android:src="@drawable/ic_bank"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            app:tint="@color/black" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_toRightOf="@id/ivBankImage"
+            android:id="@+id/tvAccountName"
+            android:layout_marginLeft="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:fontFamily="@font/ubuntu_medium"
+            android:gravity="center_vertical"
+            android:textSize="24sp"
+            tools:text="Chase checking" />
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_right_arrow"
+            app:tint="@color/black"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="24dp" />
+
+    </RelativeLayout>
+</layout>

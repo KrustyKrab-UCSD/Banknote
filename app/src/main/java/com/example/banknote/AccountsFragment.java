@@ -121,7 +121,9 @@ public class AccountsFragment extends Fragment {
                 // allAccounts is input for an adapter
                 allAccounts.addAll(accounts);
                 // adapter in onViewCreated() for AccountsFragment.java
-                Log.d(TAG, allAccounts.get(0).getAccountName());
+                for (int i = 0; i < allAccounts.size(); i++) {
+                    Log.d(TAG, allAccounts.get(i).getAccountName());
+                }
                 adapter.notifyDataSetChanged();
             }
         });
