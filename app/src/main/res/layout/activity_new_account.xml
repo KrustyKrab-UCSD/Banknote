@@ -1,57 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".NewAccountActivity">
+    tools:context=".NewAccountActivity"
+    android:layout_marginVertical="36dp">
 
-    <EditText
-        android:id="@+id/tvAccountName"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/bntBack"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_left_arrow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/ubuntu_regular"
-        android:minHeight="48dp"
-        tools:text="Account Name..." />
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Add a new account"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etAccountPassword"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_marginTop="48dp"
+        android:id="@+id/tvBankName"
+        style="@style/InputFieldTitleNewAccount"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/ubuntu_regular"
-        android:minHeight="48dp"
-        tools:text="Account Password..." />
+        android:text="Bank"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <EditText
+        app:layout_constraintTop_toBottomOf="@id/tvBankName"
         android:id="@+id/etBankName"
+        style="@style/InputFieldNewAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/ubuntu_regular"
-        android:minHeight="48dp"
-        tools:text="Bank Name..." />
+        android:background="@drawable/background_edit_text"
+        tools:hint="Bank" />
+
+    <TextView
+        android:id="@+id/tvAccountName"
+        style="@style/InputFieldTitleNewAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etBankName" />
+
+    <EditText
+        android:id="@+id/etAccountName"
+        style="@style/InputFieldNewAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvAccountName"
+        android:background="@drawable/background_edit_text"
+        tools:hint="Account Name" />
+
+    <TextView
+        android:id="@+id/tvAccountNumber"
+        style="@style/InputFieldTitleNewAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAccountName" />
 
     <EditText
         android:id="@+id/etAccountNumber"
+        style="@style/InputFieldNewAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/ubuntu_regular"
-        android:minHeight="48dp"
-        tools:text="Account Number..." />
+        app:layout_constraintTop_toBottomOf="@id/tvAccountNumber"
+        android:background="@drawable/background_edit_text"
+        tools:hint="Account Number" />
+
+    <TextView
+        android:id="@+id/tvAccountPassword"
+        style="@style/InputFieldTitleNewAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Password"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAccountNumber" />
+
+    <EditText
+        android:id="@+id/etAccountPassword"
+        style="@style/InputFieldNewAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvAccountPassword"
+        android:background="@drawable/background_edit_text"
+        tools:hint="Account Password" />
+
+    <TextView
+        android:id="@+id/tvBalance"
+        style="@style/InputFieldTitleNewAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Balance"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAccountPassword" />
+
 
     <EditText
         android:id="@+id/etBalance"
+        style="@style/InputFieldNewAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/ubuntu_regular"
-        android:minHeight="48dp"
-        tools:text="Balance in Account..." />
+        app:layout_constraintTop_toBottomOf="@id/tvBalance"
+        android:background="@drawable/background_edit_text"
+        tools:hint="Account Balance" />
 
     <Button
         android:id="@+id/btnCreateAccount"
-        android:layout_width="match_parent"
+        style="@style/BlackButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/ubuntu_regular"
-        android:text="Create" />
-</LinearLayout>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Link" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
         <EditTextPreference
             app:key="profileEdit"
             app:title="Edit profile"
-            app:useSimpleSummaryProvider="false" />
+            app:useSimpleSummaryProvider="false"/>
 
         <ListPreference
             app:defaultValue="false"
