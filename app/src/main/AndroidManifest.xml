@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banknote">
         <activity
+            android:name=".IndividualAccountActivity"
+            android:exported="true" />
+        <activity
             android:name=".NewAccountActivity"
             android:exported="true" />
         <activity
