@@ -1,5 +1,6 @@
 package com.example.banknote;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.banknote.Models.Account;
@@ -19,8 +21,10 @@ import com.parse.SaveCallback;
 
 public class NewAccountActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE = 20;
+
     private EditText etAccountName;
-    private EditText etBankName;
+    private TextView tvBankName;
     private EditText etBalance;
     private EditText etAccountPassword;
     private EditText etAccountNumber;
@@ -36,9 +40,17 @@ public class NewAccountActivity extends AppCompatActivity {
         etAccountName = findViewById(R.id.tvAccountName);
         etAccountPassword = findViewById(R.id.etAccountPassword);
         etAccountNumber = findViewById(R.id.etAccountNumber);
-        etBankName = findViewById(R.id.etBankName);
+        tvBankName = findViewById(R.id.tvBankName);
         etBalance = findViewById(R.id.etBalance);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
+
+        tvBankName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NewAccountActivity.this, BankSelectionActivity.class);
+                     startActivityForResult(intent, REQUEST_CODE);
+                }
+        });
 
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +67,7 @@ public class NewAccountActivity extends AppCompatActivity {
                     return;
                 }
 
-                String bankName = etBankName.getText().toString();
+                String bankName = tvBankName.getText().toString();
                 if (bankName.isEmpty()) {
                     Toast.makeText(NewAccountActivity.this, "Bank name can't be empty!", Toast.LENGTH_SHORT).show();
                     return;
@@ -101,6 +113,15 @@ public class NewAccountActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            tvBankName.setText(data.getExtras().getString("bank"));
+            Toast.makeText(this, "NewAccountActivity: OnActivityResult" + data.getExtras().getString("bank"), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void saveAccount(String accountName, String bank, String accountPassword, Long accountNumber, Long balance, ParseUser currentUser) {
