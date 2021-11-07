@@ -36,7 +36,7 @@ public class NewAccountActivity extends AppCompatActivity {
         etAccountName = findViewById(R.id.tvAccountName);
         etAccountPassword = findViewById(R.id.etAccountPassword);
         etAccountNumber = findViewById(R.id.etAccountNumber);
-//        etBankName = findViewById(R.id.etBankName);
+        etBankName = findViewById(R.id.etBankName);
         etBalance = findViewById(R.id.etBalance);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
 
@@ -91,14 +91,19 @@ public class NewAccountActivity extends AppCompatActivity {
                 }
 
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                Bank bank = new Bank(); // for now
-                saveAccount(accountName, bank, accountPassword, accountNumber, balance, currentUser);
+                Log.i(TAG, "accountName: " + accountName);
+                Log.i(TAG, "accountPassword: " + accountPassword);
+                Log.i(TAG, "accountNumber: " + accountNumber);
+                Log.i(TAG, "balance: " + balance);
+                Log.i(TAG, "bankName: " + bankName);
+
+                saveAccount(accountName, bankName, accountPassword, accountNumber, balance, currentUser);
             }
         });
 
     }
 
-    private void saveAccount(String accountName, ParseObject bank, String accountPassword, Long accountNumber, Long balance, ParseUser currentUser) {
+    private void saveAccount(String accountName, String bank, String accountPassword, Long accountNumber, Long balance, ParseUser currentUser) {
         Account account = new Account();
         account.setAccountName(accountName);
         account.setBank(bank);

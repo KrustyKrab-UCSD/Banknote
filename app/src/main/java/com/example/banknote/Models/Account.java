@@ -12,7 +12,7 @@ public class Account extends ParseObject {
     public static final String KEY_BANK = "bank";
     public static final String KEY_USER = "user";
     public static final String KEY_BALANCE = "balance";
-    public static final String KEY_ACCOUNT_NUMBER = "accountNumber";
+    public static final String KEY_ACCOUNT_NUMBER = "acountNumber"; // spelled wrong in the Parse database LOL
     public static final String KEY_ACCOUNT_PASSWORD = "accountPassword";
 
     public String getAccountName() {
@@ -23,11 +23,11 @@ public class Account extends ParseObject {
         put(KEY_ACCOUNT_NAME, accountName);
     }
 
-    public ParseObject getBank() {
-        return getParseObject(KEY_BANK);
+    public String getBank() {
+        return getString(KEY_BANK);
     }
 
-    public void setBank(ParseObject bank) {
+    public void setBank(String bank) {
         put(KEY_BANK, bank);
     }
 
