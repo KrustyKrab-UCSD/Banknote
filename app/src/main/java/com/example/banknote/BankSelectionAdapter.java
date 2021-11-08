@@ -1,13 +1,17 @@
 package com.example.banknote;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +23,7 @@ public class BankSelectionAdapter extends RecyclerView.Adapter<BankSelectionAdap
 
     private Context context;
     private List<Bank> banks;
+    private static Intent intent = new Intent();
 
     public BankSelectionAdapter(Context context, List<Bank> banks) {
         this.context = context;
@@ -43,21 +48,37 @@ public class BankSelectionAdapter extends RecyclerView.Adapter<BankSelectionAdap
         return banks.size();
     }
 
+    public static Intent getIntent() {
+        return intent;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvBankName;
         private ImageView ivBankImage;
-
+        private ConstraintLayout itemBankContainer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvBankName = itemView.findViewById(R.id.tvBankName);
             ivBankImage = itemView.findViewById(R.id.ivBankImage);
+            itemBankContainer = itemView.findViewById(R.id.itemBankContainer);
         }
 
         public void bind(Bank bank) {
             tvBankName.setText(bank.getName());
             Glide.with(context).load(bank.getImage().getUrl()).into(ivBankImage);
+
+            itemBankContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Will highlight background of selected bank
+
+                    // Will take selected Bank object and store it in the adapter
+                    intent.putExtra("bank", bank.getName());
+                    Toast.makeText(context, bank.getName(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

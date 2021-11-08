@@ -34,11 +34,11 @@
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_right_arrow"
-            app:tint="@color/black"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="24dp" />
+            android:layout_marginRight="24dp"
+            android:src="@drawable/ic_right_arrow"
+            app:tint="@color/black" />
 
     </RelativeLayout>
 </layout>
