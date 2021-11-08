@@ -37,7 +37,7 @@ public class NewAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_account);
 
-        etAccountName = findViewById(R.id.tvAccountName);
+        etAccountName = findViewById(R.id.etAccountName);
         etAccountPassword = findViewById(R.id.etAccountPassword);
         etAccountNumber = findViewById(R.id.etAccountNumber);
         tvBankName = findViewById(R.id.tvBankName);
@@ -120,7 +120,6 @@ public class NewAccountActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
             tvBankName.setText(data.getExtras().getString("bank"));
-            Toast.makeText(this, "NewAccountActivity: OnActivityResult" + data.getExtras().getString("bank"), Toast.LENGTH_SHORT).show();
         }
     }
 
