@@ -1,0 +1,5 @@
+<resources>
+    <item name="margin_top" type="dimen">24dp</item>
+    <item name="text_size_heading" type="dimen">18sp</item>
+    <item name="text_size_content" type="dimen">14dp</item>
+</resources>

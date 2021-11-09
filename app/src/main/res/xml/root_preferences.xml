@@ -1,43 +1,52 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="Account">
+    <PreferenceCategory app:title="Account"
+        android:layout="@layout/preference_heading">
 
         <EditTextPreference
             app:key="profileEdit"
             app:title="Edit profile"
-            app:useSimpleSummaryProvider="false"/>
+            app:useSimpleSummaryProvider="false"
+            android:layout="@layout/preference_list"/>
 
         <ListPreference
             app:defaultValue="false"
             app:key="passwordEdit"
             app:title="Change password"
-            app:useSimpleSummaryProvider="false" />
+            app:useSimpleSummaryProvider="false"
+            android:layout="@layout/preference_list"/>
         <SwitchPreference
             android:defaultValue="false"
             android:key="isPush"
-            android:title="Push notifications" />
+            android:title="Push notifications"
+            android:layout="@layout/preference_switch"
+            app:widgetLayout="@layout/preference_switch_widget"/>
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="More"/>
+    <PreferenceCategory app:title="More"
+        android:layout="@layout/preference_heading"/>
     <EditTextPreference
         android:defaultValue="Default value"
         android:key="edit_text_preference_1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="About us" />
+        android:title="About us"
+        android:layout="@layout/preference_list"/>
     <EditTextPreference
         android:defaultValue="Default value"
         android:key="edit_text_preference_2"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Privacy Policy" />
+        android:title="Privacy Policy"
+        android:layout="@layout/preference_list"/>
     <EditTextPreference
         android:defaultValue="Default value"
         android:key="edit_text_preference_3"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Terms and Conditions" />
+        android:title="Terms and Conditions"
+        android:layout="@layout/preference_list"/>
 
 </PreferenceScreen>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
@@ -19,17 +20,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:paddingVertical="4dp">
 
         <TextView
             android:id="@android:id/title"
+            style="@style/PreferenceCategoryTitleTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:fontFamily="@font/ubuntu_medium"
+            android:textColor="@color/black"
             android:textAlignment="viewStart"
-            android:textSize="@dimen/text_size_heading"
-            style="@style/Heading"/>
+            android:textSize="@dimen/text_size_content"/>
 
         <TextView
             android:id="@android:id/summary"
@@ -47,4 +49,11 @@
             style="@style/PreferenceSummaryTextStyle"/>
 
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_right_arrow"
+        android:layout_gravity="right|center_vertical"
+        app:tint="@color/black" />
 </LinearLayout>
