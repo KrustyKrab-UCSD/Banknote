@@ -77,4 +77,9 @@
     <style name="CustomPreferenceSwitch" parent="Preference.SwitchPreference">
         <item name="android:widgetLayout">@layout/preference_switch_widget</item>
     </style>
+    <style name="RecyclerViewItemText" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/ubuntu_medium</item>
+        <item name="android:textSize">@dimen/text_size_recyclerview_item</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

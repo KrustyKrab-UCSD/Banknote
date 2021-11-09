@@ -1,5 +1,10 @@
 <resources>
     <item name="margin_top" type="dimen">24dp</item>
     <item name="text_size_heading" type="dimen">18sp</item>
-    <item name="text_size_content" type="dimen">14dp</item>
+    <item name="text_size_content" type="dimen">14sp</item>
+    <item name="text_size_recyclerview_item" type="dimen">16sp</item>
+    <item name="vertical_padding_recyclerview" type="dimen">20dp</item>
+    <item name="horizontal_padding_recyclerview" type="dimen">24dp</item>
+    <item name="image_recyclerview" type="dimen">24dp</item>
+    <item name="margins_recyclerview" type="dimen">8dp</item>
 </resources>

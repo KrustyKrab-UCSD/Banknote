@@ -4,39 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
-        android:id="@+id/container"
+        android:id="@+id/itemBankContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margins_recyclerview"
-        android:background="@drawable/background_recyclerview_item"
-        android:paddingVertical="@dimen/vertical_padding_recyclerview"
-        android:paddingHorizontal="@dimen/horizontal_padding_recyclerview">
+        android:background="@drawable/background_recyclerview_item_dark"
+        android:paddingHorizontal="@dimen/horizontal_padding_recyclerview"
+        android:paddingVertical="@dimen/vertical_padding_recyclerview">
 
         <ImageView
             android:id="@+id/ivBankImage"
             android:layout_width="@dimen/image_recyclerview"
             android:layout_height="@dimen/image_recyclerview"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_bank"
-            app:tint="@color/black" />
+            tools:srcCompat="@drawable/chase"
+            android:layout_centerVertical="true"/>
 
         <TextView
-            android:id="@+id/tvAccountName"
+            android:id="@+id/tvBankName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_toRightOf="@id/ivBankImage"
+            style="@style/RecyclerViewItemText"
             android:layout_centerVertical="true"
-            tools:text="Chase checking"
-            style="@style/RecyclerViewItemText"/>
+            android:textColor="@color/white"
+            tools:text="JPMorgan Chase &amp; Co." />
 
-        <ImageView
-            android:layout_width="@dimen/image_recyclerview"
-            android:layout_height="@dimen/image_recyclerview"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_right_arrow"
-            app:tint="@color/black" />
 
     </RelativeLayout>
+
 </layout>
