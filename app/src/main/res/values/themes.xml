@@ -22,6 +22,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="iconTint">@null</item>
         <item name="iconSize">32dp</item>
+        <item name="android:textSize">@dimen/text_size_content</item>
     </style>
     <style name="BlackButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="textAllCaps">true</item>
@@ -30,29 +31,30 @@
         <item name="android:textColor">@color/white</item>
         <item name="fontFamily">@font/ubuntu_medium</item>
         <item name="iconTint">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_content</item>
     </style>
 
     <style name="SettingsHeaderText" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/ubuntu_bold</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_size_heading</item>
         <item name="android:textColor">@color/black</item>
     </style>
     <style name="SettingsItemText" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/ubuntu_medium</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_size_heading</item>
         <item name="android:textColor">@color/black</item>
     </style>
     <style name="InputFieldTitle" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/ubuntu_medium</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_size_content</item>
         <item name="android:layout_marginLeft">48dp</item>
     </style>
     <style name="InputField" parent="Widget.AppCompat.EditText">
         <item name="background">@drawable/background_edit_text</item>
         <item name="fontFamily">@font/ubuntu_medium</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/text_size_content</item>
         <item name="android:paddingVertical">10dp</item>
         <item name="android:paddingHorizontal">16dp</item>
         <item name="android:layout_marginHorizontal">48dp</item>
@@ -62,7 +64,7 @@
     <style name="InputFieldTitleNewAccount" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/ubuntu_medium</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_size_content</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginTop">24dp</item>
     </style>

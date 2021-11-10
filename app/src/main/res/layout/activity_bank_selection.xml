@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="@dimen/margin_top"
     android:paddingHorizontal="@dimen/margin_horizontal"
+    android:paddingTop="@dimen/margin_top"
     tools:context=".BankSelectionActivity">
 
     <TextView
@@ -24,9 +24,9 @@
         android:layout_height="@dimen/back_button_size"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_left_arrow"
-        app:layout_constraintTop_toTopOf="@id/tvTopLabel"
         app:layout_constraintBottom_toBottomOf="@id/tvTopLabel"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTopLabel"
         app:tint="@color/black">
 
     </ImageButton>
@@ -34,11 +34,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBankSelection"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="16dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTopLabel"
-        app:layout_constraintBottom_toTopOf="@id/btnSelect"
-        android:layout_marginVertical="24dp">
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTopLabel">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -49,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select"
+        android:layout_marginBottom="@dimen/margin_top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">

@@ -14,10 +14,10 @@
 
         <ImageView
             android:id="@+id/ivBankImage"
-            android:layout_width="@dimen/image_recyclerview"
-            android:layout_height="@dimen/image_recyclerview"
-            tools:srcCompat="@drawable/chase"
-            android:layout_centerVertical="true"/>
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            tools:srcCompat="@drawable/ic_bank" />
 
         <TextView
             android:id="@+id/tvBankName"
