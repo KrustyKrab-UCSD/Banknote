@@ -2,6 +2,7 @@ package com.example.banknote;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -76,6 +78,8 @@ public class BankSelectionAdapter extends RecyclerView.Adapter<BankSelectionAdap
                     // Will highlight background of selected bank
                     // Could use the following solution:
                     // https://stackoverflow.com/questions/40692214/changing-background-color-of-selected-item-in-recyclerview
+                    itemBankContainer.setBackground(ContextCompat.getDrawable(context, R.drawable.background_recyclerview_item_dark));
+                    tvBankName.setTextColor(Color.WHITE);
 
                     // Will take selected Bank object and store it in the adapter
                     intent.putExtra("bank", bank.getName());

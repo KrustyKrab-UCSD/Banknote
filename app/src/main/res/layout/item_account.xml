@@ -7,7 +7,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/margins_recyclerview"
+        android:layout_marginVertical="@dimen/margins_vertical_recyclerview"
         android:background="@drawable/background_recyclerview_item"
         android:paddingVertical="@dimen/vertical_padding_recyclerview"
         android:paddingHorizontal="@dimen/horizontal_padding_recyclerview">

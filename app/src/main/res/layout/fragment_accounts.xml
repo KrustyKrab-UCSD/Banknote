@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="24dp"
+        android:paddingHorizontal="@dimen/horizontal_padding_recyclerview"
         tools:context=".AccountsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -20,7 +20,7 @@
             android:id="@+id/tvMyAccounts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/margin_top"
             android:fontFamily="@font/ubuntu_bold"
             android:text="My Accounts"
             android:textColor="@color/black"
