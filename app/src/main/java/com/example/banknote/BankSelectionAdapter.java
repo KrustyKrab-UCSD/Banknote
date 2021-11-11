@@ -27,6 +27,7 @@ public class BankSelectionAdapter extends RecyclerView.Adapter<BankSelectionAdap
     private Context context;
     private List<Bank> banks;
     private static Intent intent = new Intent();
+    private int selectedPos = RecyclerView.NO_POSITION;
 
     public BankSelectionAdapter(Context context, List<Bank> banks) {
         this.context = context;
@@ -43,6 +44,14 @@ public class BankSelectionAdapter extends RecyclerView.Adapter<BankSelectionAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Bank bank = banks.get(position);
+        if (selectedPos == position) {
+            holder.itemView.setBackground(ContextCompat.getDrawable(context, R.drawable.background_recyclerview_item_dark));
+            holder.tvBankName.setTextColor(Color.WHITE);
+        } else {
+            holder.itemView.setBackground(ContextCompat.getDrawable(context, R.drawable.background_recyclerview_item));
+            holder.tvBankName.setTextColor(Color.BLACK);
+        }
+
         holder.bind(bank);
     }
 
@@ -75,15 +84,11 @@ public class BankSelectionAdapter extends RecyclerView.Adapter<BankSelectionAdap
             itemBankContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Will highlight background of selected bank
-                    // Could use the following solution:
-                    // https://stackoverflow.com/questions/40692214/changing-background-color-of-selected-item-in-recyclerview
-                    itemBankContainer.setBackground(ContextCompat.getDrawable(context, R.drawable.background_recyclerview_item_dark));
-                    tvBankName.setTextColor(Color.WHITE);
-
+                    notifyItemChanged(selectedPos);
+                    selectedPos = getAdapterPosition();
+                    notifyItemChanged(selectedPos);
                     // Will take selected Bank object and store it in the adapter
                     intent.putExtra("bank", bank.getName());
-                    Toast.makeText(context, bank.getName(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
