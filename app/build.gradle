@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -59,4 +60,10 @@ dependencies {
     annotationProcessor 'org.parceler:parceler:1.1.12'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.KwabenBerko:News-API-Java:1.0.0'
+
+    // For Glide rounded corners transformation
+    implementation 'jp.wasabeef:glide-transformations:4.1.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
 }

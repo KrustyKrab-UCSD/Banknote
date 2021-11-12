@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.example.banknote.Activities.LoginActivity;
 import com.example.banknote.Fragments.AccountsFragment;
+import com.example.banknote.Fragments.NewsFragment;
 import com.example.banknote.Fragments.SettingsFragment;
 import com.example.banknote.Fragments.SpendingAnalysisFragment;
 import com.example.banknote.Models.AccountUser;
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_analysis:
                         fragment = new SpendingAnalysisFragment();
+                        break;
+                    case R.id.action_news:
+                        fragment = new NewsFragment();
                         break;
                     default:
                         fragment = new AccountsFragment();
