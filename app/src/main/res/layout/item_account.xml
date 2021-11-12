@@ -22,13 +22,13 @@
 
         <TextView
             android:id="@+id/tvAccountName"
+            style="@style/RecyclerViewItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_toRightOf="@id/ivBankImage"
-            android:layout_centerVertical="true"
-            tools:text="Chase checking"
-            style="@style/RecyclerViewItemText"/>
+            tools:text="Chase checking" />
 
         <ImageView
             android:layout_width="@dimen/image_recyclerview"

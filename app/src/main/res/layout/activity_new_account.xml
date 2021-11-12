@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/margin_horizontal"
-    android:paddingVertical="@dimen/margin_top"
+    android:paddingTop="@dimen/margin_top"
+    android:paddingBottom="@dimen/margin_bottom"
     tools:context=".Activities.NewAccountActivity">
 
     <ImageButton
@@ -27,7 +28,7 @@
         android:fontFamily="@font/ubuntu_bold"
         android:text="Add a new account"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_heading"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

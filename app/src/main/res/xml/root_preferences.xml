@@ -41,6 +41,7 @@
         android:singleLine="true"
         android:title="Privacy Policy"
         android:layout="@layout/preference_list"/>
+
     <EditTextPreference
         android:defaultValue="Default value"
         android:key="edit_text_preference_3"
@@ -48,5 +49,12 @@
         android:singleLine="true"
         android:title="Terms and Conditions"
         android:layout="@layout/preference_list"/>
+
+    <Preference
+        android:title="Log Out"
+        android:key="log_out"
+        android:layout="@layout/preference_logout" />
+
+
 
 </PreferenceScreen>

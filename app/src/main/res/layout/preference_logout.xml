@@ -14,23 +14,24 @@
 
     <include layout="@layout/image_frame"
         android:layout_width="0dp"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"/>
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:paddingVertical="4dp">
 
         <TextView
             android:id="@android:id/title"
+            style="@style/PreferenceCategoryTitleTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textAlignment="viewStart"
-            android:textSize="@dimen/text_size_heading"
-            style="@style/Heading"/>
+            android:textSize="@dimen/text_size_content"
+            android:fontFamily="@font/ubuntu_medium"
+            android:textColor="@color/red_negative"
+            android:gravity="start"/>
 
         <TextView
             android:id="@android:id/summary"
@@ -48,4 +49,7 @@
             style="@style/PreferenceSummaryTextStyle"/>
 
     </RelativeLayout>
+
+
 </LinearLayout>
+
