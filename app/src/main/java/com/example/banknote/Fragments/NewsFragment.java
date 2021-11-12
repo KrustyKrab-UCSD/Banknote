@@ -19,9 +19,9 @@ import com.example.banknote.BuildConfig;
 import com.example.banknote.Models.Article;
 import com.example.banknote.R;
 import com.google.gson.JsonObject;
-//import com.kwabenaberko.newsapilib.NewsApiClient;
-//import com.kwabenaberko.newsapilib.models.request.TopHeadlinesRequest;
-//import com.kwabenaberko.newsapilib.models.response.ArticleResponse;
+import com.kwabenaberko.newsapilib.NewsApiClient;
+import com.kwabenaberko.newsapilib.models.request.TopHeadlinesRequest;
+import com.kwabenaberko.newsapilib.models.response.ArticleResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,23 +54,23 @@ public class NewsFragment extends Fragment {
         rvArticles.setAdapter(adapter);
         rvArticles.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-//        NewsApiClient newsApiClient = new NewsApiClient(BuildConfig.NEWS_API_KEY);
-//        newsApiClient.getTopHeadlines(
-//                new TopHeadlinesRequest.Builder()
-//                        .category("business").country("us").build(),
-//                new NewsApiClient.ArticlesResponseCallback() {
-//                    @Override
-//                    public void onSuccess(ArticleResponse articleResponse) {
-//                        List<com.kwabenaberko.newsapilib.models.Article> news = articleResponse.getArticles();
-//                        articles.addAll(Article.fromNewsApiArticlesArray(news));
-//                        adapter.notifyDataSetChanged();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Throwable throwable) {
-//                        Log.e(TAG, "getTopHeadlines: OnFailure", throwable);
-//                    }
-//                }
-//        );
+        NewsApiClient newsApiClient = new NewsApiClient(BuildConfig.NEWS_API_KEY);
+        newsApiClient.getTopHeadlines(
+                new TopHeadlinesRequest.Builder()
+                        .category("business").country("us").build(),
+                new NewsApiClient.ArticlesResponseCallback() {
+                    @Override
+                    public void onSuccess(ArticleResponse articleResponse) {
+                        List<com.kwabenaberko.newsapilib.models.Article> news = articleResponse.getArticles();
+                        articles.addAll(Article.fromNewsApiArticlesArray(news));
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        Log.e(TAG, "getTopHeadlines: OnFailure", throwable);
+                    }
+                }
+        );
     }
 }
