@@ -1,4 +1,4 @@
-package com.example.banknote;
+package com.example.banknote.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.banknote.Models.AccountUser;
+import com.example.banknote.R;
 import com.example.banknote.databinding.ActivityRegistrationBinding;
 import com.parse.ParseException;
 import com.parse.SignUpCallback;

@@ -1,4 +1,4 @@
-package com.example.banknote;
+package com.example.banknote.Activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.banknote.MainActivity;
 import com.example.banknote.Models.Account;
-import com.example.banknote.Models.Bank;
+import com.example.banknote.R;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 

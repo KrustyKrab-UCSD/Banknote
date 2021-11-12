@@ -1,4 +1,4 @@
-package com.example.banknote;
+package com.example.banknote.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.banknote.MainActivity;
 import com.example.banknote.Models.AccountUser;
+import com.example.banknote.R;
 import com.example.banknote.databinding.ActivityLoginBinding;
 import com.parse.LogInCallback;
 import com.parse.ParseException;

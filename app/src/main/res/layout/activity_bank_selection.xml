@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/margin_horizontal"
     android:paddingTop="@dimen/margin_top"
-    tools:context=".BankSelectionActivity">
+    tools:context=".Activities.BankSelectionActivity">
 
     <TextView
         android:id="@+id/tvTopLabel"

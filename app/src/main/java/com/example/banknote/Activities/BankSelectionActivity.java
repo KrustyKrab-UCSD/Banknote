@@ -1,4 +1,4 @@
-package com.example.banknote;
+package com.example.banknote.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,9 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
+import com.example.banknote.Adapters.BankSelectionAdapter;
 import com.example.banknote.Models.Bank;
+import com.example.banknote.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

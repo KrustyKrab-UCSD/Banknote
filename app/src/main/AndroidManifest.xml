@@ -15,18 +15,18 @@
         android:theme="@style/Theme.Banknote"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".IndividualAccountActivity"
+            android:name=".Activities.IndividualAccountActivity"
             android:exported="true" />
         <activity
-            android:name=".NewAccountActivity"
+            android:name=".Activities.NewAccountActivity"
             android:exported="true" />
         <activity
-            android:name=".BankSelectionActivity"
+            android:name=".Activities.BankSelectionActivity"
             android:exported="false" />
-        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".Activities.RegistrationActivity" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

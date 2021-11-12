@@ -1,4 +1,4 @@
-package com.example.banknote;
+package com.example.banknote.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.banknote.Adapters.AccountsAdapter;
 import com.example.banknote.Models.Account;
+import com.example.banknote.Activities.NewAccountActivity;
+import com.example.banknote.R;
 import com.example.banknote.databinding.FragmentAccountsBinding;
 import com.parse.FindCallback;
 import com.parse.ParseException;

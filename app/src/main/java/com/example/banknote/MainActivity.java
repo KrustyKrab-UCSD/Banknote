@@ -11,6 +11,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.banknote.Activities.LoginActivity;
+import com.example.banknote.Fragments.AccountsFragment;
+import com.example.banknote.Fragments.SettingsFragment;
+import com.example.banknote.Fragments.SpendingAnalysisFragment;
 import com.example.banknote.Models.AccountUser;
 import com.example.banknote.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        // So app doesn't start on a blank screen
+        Fragment fragment = new AccountsFragment();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+
         binding.btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,17 +49,14 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                // uninitialize once fragments are set up
                 Fragment fragment = new AccountsFragment();
-                // fragment names subject to change
                 switch (item.getItemId()) {
                     case R.id.action_settings:
                         fragment = new SettingsFragment();
                         break;
                     case R.id.action_analysis:
-                        // fragment = new AnalysisFragment();
+                        fragment = new SpendingAnalysisFragment();
                         break;
-                    case R.id.action_accounts:
                     default:
                         fragment = new AccountsFragment();
                         break;
