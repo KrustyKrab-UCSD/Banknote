@@ -69,7 +69,7 @@ public class NewAccountActivity extends AppCompatActivity {
 
                 String bankName = tvBankName.getText().toString();
                 if (bankName.isEmpty()) {
-                    Toast.makeText(NewAccountActivity.this, "Bank name can't be empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewAccountActivity.this, "Please choose a Bank!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
