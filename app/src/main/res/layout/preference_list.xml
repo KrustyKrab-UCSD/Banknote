@@ -14,7 +14,8 @@
     android:gravity="center_vertical">
 
     <include layout="@layout/image_frame"
-        android:visibility="gone"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -24,7 +25,6 @@
 
         <TextView
             android:id="@android:id/title"
-            style="@style/PreferenceCategoryTitleTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"

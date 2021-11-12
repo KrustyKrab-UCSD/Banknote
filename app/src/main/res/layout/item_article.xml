@@ -2,33 +2,47 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginVertical="8dp"
+    android:layout_marginVertical="@dimen/vertical_padding_recyclerview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivArticleImage"
-        android:layout_width="103dp"
-        android:layout_height="72dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
         android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="233dp"
-        android:layout_height="70dp"
-        android:fontFamily="@font/ubuntu_bold"
-        android:text="TextView"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/ivArticleImage"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Tips for taking photos to look professional"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_marginRight="12dp"
         android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="18sp"
+        android:maxLines="2"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/ivArticleImage"
+        android:id="@+id/tvDetails"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:text="5 Mins • Tips &amp; Tricks"
+        android:textSize="16sp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:textColor="#9d9d9d"
+        android:layout_marginTop="12dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

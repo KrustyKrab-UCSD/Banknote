@@ -14,19 +14,19 @@
 
         <ImageView
             android:id="@+id/ivBankImage"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_centerVertical="true"
             tools:srcCompat="@drawable/ic_bank" />
 
         <TextView
             android:id="@+id/tvBankName"
+            style="@style/RecyclerViewItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_toRightOf="@id/ivBankImage"
-            style="@style/RecyclerViewItemText"
-            android:layout_centerVertical="true"
             tools:text="JPMorgan Chase &amp; Co." />
 
 
