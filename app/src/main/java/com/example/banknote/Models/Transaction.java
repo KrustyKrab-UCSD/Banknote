@@ -12,6 +12,7 @@ public class Transaction extends ParseObject {
     public static final String KEY_DATE = "date";
     public static final String KEY_BALANCE = "balance";
     public static final String KEY_ACCOUNT = "account";
+    public static final String KEY_DESCRIPTION = "description";
 
     public boolean getIsSpending() { return getBoolean(KEY_IS_SPENDING); }
     public void setIsSpending(boolean isSpending) { put(KEY_IS_SPENDING, isSpending); }
@@ -21,4 +22,6 @@ public class Transaction extends ParseObject {
     public void setTransactionAmount(Double balance) { put(KEY_BALANCE, balance); }
     public ParseObject getAccount() { return getParseObject(KEY_ACCOUNT); }
     public void setAccount(ParseObject account) { put(KEY_ACCOUNT, account); }
+    public String getDescription() { return getString(KEY_DESCRIPTION); }
+    public void setDescription(String description) { put(KEY_DESCRIPTION, description); }
 }

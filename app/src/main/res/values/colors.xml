@@ -10,4 +10,10 @@
 
     <color name="green_positive">#118c4f</color>
     <color name="red_negative">#bf0904</color>
+    <color name="blue">#172BF4</color>
+    <color name="pink">#E5386D</color>
+    <color name="green">#118C4F</color>
+    <color name="yellow">#FBBC05</color>
+    <color name="red">#EB4335</color>
+    <color name="gray">#282828</color>
 </resources>

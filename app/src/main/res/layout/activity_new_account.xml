@@ -124,8 +124,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_edit_text"
+        android:inputType="number"
         app:layout_constraintTop_toBottomOf="@id/tvBalance"
-        tools:hint="Account Balance" />
+        tools:hint="Account Balance"
+        tools:layout_editor_absoluteX="32dp" />
 
     <Button
         android:id="@+id/btnCreateAccount"
