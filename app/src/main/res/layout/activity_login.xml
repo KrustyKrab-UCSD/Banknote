@@ -22,88 +22,82 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/ivLogin"
             android:layout_width="250dp"
             android:layout_height="250dp"
+            android:layout_marginTop="36dp"
             android:src="@drawable/login_image"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
-            android:layout_marginTop="36dp"
-            android:id="@+id/ivLogin"/>
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <TextView
             android:id="@+id/tvUsername"
+            style="@style/InputFieldTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username"
-            style="@style/InputFieldTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.45"/>
+            app:layout_constraintVertical_bias="0.45" />
 
         <EditText
             android:id="@+id/etUsername"
+            style="@style/InputField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="48dp"
             android:background="@drawable/background_edit_text"
             android:fontFamily="@font/ubuntu_medium"
             android:hint="Username"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="10dp"
-            android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/tvUsername" />
 
         <TextView
             android:id="@+id/tvPassword"
+            style="@style/InputFieldTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Password"
-            style="@style/InputFieldTitle"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etUsername" />
 
         <EditText
             android:id="@+id/etPassword"
+            style="@style/InputField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="48dp"
             android:background="@drawable/background_edit_text"
-            android:fontFamily="@font/ubuntu_medium"
             android:hint="Password"
             android:inputType="textPassword"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="10dp"
-            android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/tvPassword" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            style="@style/BlackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/BlackButton"
+            android:layout_marginTop="30dp"
             android:text="Login"
-            android:id="@+id/btnLogin"
-            app:layout_constraintTop_toBottomOf="@id/etPassword"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="30dp" />
+            app:layout_constraintTop_toBottomOf="@id/etPassword" />
 
         <TextView
+            android:id="@+id/tvNoAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/ubuntu_medium"
+            android:text="Don't have an account?"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/btnLogin"
-            android:id="@+id/tvNoAccount"
+            android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="12dp"
-            android:textSize="14sp" />
+            app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
         <Button
+            android:id="@+id/btnSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -112,9 +106,7 @@
             android:textColor="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:id="@+id/btnSignUp"
-            app:layout_constraintTop_toBottomOf="@id/tvNoAccount"/>
-
+            app:layout_constraintTop_toBottomOf="@id/tvNoAccount" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
