@@ -16,4 +16,8 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="create_update_transaction">Create / Update Transaction</string>
+    <string name="amount">Amount</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
 </resources>

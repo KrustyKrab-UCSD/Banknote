@@ -1,6 +1,7 @@
 package com.example.banknote.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.banknote.Activities.IndividualAccountActivity;
 import com.example.banknote.Models.Account;
 import com.example.banknote.databinding.ItemAccountBinding;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -33,6 +37,9 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, account.getAccountName() + " clicked!", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(context, IndividualAccountActivity.class);
+                    i.putExtra("account", Parcels.wrap(account));
+                    context.startActivity(i);
                 }
             });
         }

@@ -1,10 +1,12 @@
 package com.example.banknote.Models;
+import org.parceler.Parcel;
 
 import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+@Parcel
 @ParseClassName("Account")
 public class Account extends ParseObject {
 
@@ -14,6 +16,8 @@ public class Account extends ParseObject {
     public static final String KEY_BALANCE = "balance";
     public static final String KEY_ACCOUNT_NUMBER = "acountNumber"; // spelled wrong in the Parse database LOL
     public static final String KEY_ACCOUNT_PASSWORD = "accountPassword";
+
+    public Account() {}
 
     public String getAccountName() {
         return getString(KEY_ACCOUNT_NAME);
