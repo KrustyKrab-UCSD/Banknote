@@ -404,6 +404,14 @@ query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Setting>() {
 
 ### Build Progress
 
-#### Registration and Login Screens
+#### Registration & Login
 
-<img src='https://i.imgur.com/nq80RfO.gif' title='Registration and login screen walkthrough' height='480' alt='Registration and login screen walkthrough' />
+<img src='https://i.imgur.com/hUUdD7V.gif' height='480'/>
+
+#### Accounts Tab & New Account Activity
+
+<img src='https://i.imgur.com/OCTv98v.gif' height='480'/>
+
+#### News Tab
+
+<img src='https://i.imgur.com/cAkfohE.gif' height='480'/>
