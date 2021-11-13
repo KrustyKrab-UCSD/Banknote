@@ -11,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.banknote.Adapters.TransactionsAdapter;
 import com.example.banknote.Models.Account;
@@ -23,10 +25,13 @@ import com.example.banknote.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class IndividualAccountActivity extends AppCompatActivity {
@@ -39,6 +44,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
     private RecyclerView rvTransactions;
     private List<Transaction> allTransactions;
     private TransactionsAdapter adapter;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
         rvTransactions = findViewById(R.id.rvTransactions);
         allTransactions = new ArrayList<>();
 
-        Account account = Parcels.unwrap(getIntent().getParcelableExtra("account"));
+        account = Parcels.unwrap(getIntent().getParcelableExtra("account"));
         tvAccountName.setText(account.getAccountName());
         tvBalance.setText("$  " + account.getBalance());
 
@@ -96,6 +102,83 @@ public class IndividualAccountActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        EditText etTransactionAmount = view.findViewById(R.id.etTransactionAmount);
+        EditText etDate = view.findViewById(R.id.etDate);
+        EditText etDescription = view.findViewById(R.id.etDescription);
+
+        Button btnCreateTransaction = view.findViewById(R.id.btnCreateTransaction);
+
+        btnCreateTransaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String transactionAmountText = etTransactionAmount.getText().toString();
+                if (transactionAmountText.isEmpty()) {
+                    Toast.makeText(IndividualAccountActivity.this, "Transaction amount can't be empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                double transactionAmount;
+                try {
+                    transactionAmount = Double.parseDouble(transactionAmountText);
+                }
+                catch (NumberFormatException e) {
+                    Toast.makeText(IndividualAccountActivity.this, "Transaction amount is invalid!", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error in parsing transaction amount", e);
+                    return;
+                }
+
+                String dateString = etDate.getText().toString();
+                if (dateString.isEmpty()) {
+                    Toast.makeText(IndividualAccountActivity.this, "Date can't be empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String[] dateSplit = dateString.split("/");
+                Date date;
+                try {
+                    int year = Integer.parseInt(dateSplit[2]);
+                    int month = Integer.parseInt(dateSplit[0]);
+                    int day = Integer.parseInt(dateSplit[1]);
+                    date = new Date(year, month, day);
+                }
+                catch (NumberFormatException e) {
+                    Toast.makeText(IndividualAccountActivity.this, "Date is invalid!", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error in parsing date", e);
+                    return;
+                }
+
+                String description = etDescription.getText().toString();
+                if (description.isEmpty()) {
+                    Toast.makeText(IndividualAccountActivity.this, "Description can't be empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                saveTransaction(transactionAmount, date, description);
+            }
+        });
+
+    }
+
+    private void saveTransaction(double transactionAmount, Date date, String description) {
+        boolean isSpending = transactionAmount < 0;
+        Transaction transaction = new Transaction();
+        transaction.setIsSpending(isSpending);
+        transaction.setTransactionAmount(transactionAmount);
+        transaction.setDate(date);
+        transaction.setDescription(description);
+        transaction.setAccount(account);
+        transaction.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Error while saving", e);
+                    Toast.makeText(IndividualAccountActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.i(TAG, "Transaction save was successful!");
+            }
+        });
+
     }
 
     protected void queryTransactions(Account account) {
