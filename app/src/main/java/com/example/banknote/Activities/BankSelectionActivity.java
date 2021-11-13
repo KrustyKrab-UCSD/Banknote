@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.banknote.Adapters.BankSelectionAdapter;
 import com.example.banknote.Models.Bank;
@@ -27,7 +28,7 @@ public class BankSelectionActivity extends AppCompatActivity {
     private BankSelectionAdapter adapter;
     private List<Bank> allBanks;
     private Button btnSelect;
-    // private ImageButton ibReturn;
+    private ImageButton ibReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class BankSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bank_selection);
         rvBankSelection = findViewById(R.id.rvBankSelection);
         btnSelect = findViewById(R.id.btnSelect);
-        // ibReturn = findViewById(R.id.ibReturn);
+        ibReturn = findViewById(R.id.ibReturn);
 
 
         allBanks = new ArrayList<>();
@@ -53,16 +54,12 @@ public class BankSelectionActivity extends AppCompatActivity {
             }
         });
 
-        /*
         ibReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                setResult(RESULT_OK, intent);
                 finish();
             }
         });
-        */
     }
 
     private void queryBanks() {

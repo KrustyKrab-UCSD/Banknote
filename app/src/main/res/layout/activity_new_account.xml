@@ -11,7 +11,7 @@
     tools:context=".Activities.NewAccountActivity">
 
     <ImageButton
-        android:id="@+id/bntBack"
+        android:id="@+id/btnBackNewAccount"
         android:layout_width="@dimen/back_button_size"
         android:layout_height="@dimen/back_button_size"
         android:background="@android:color/transparent"

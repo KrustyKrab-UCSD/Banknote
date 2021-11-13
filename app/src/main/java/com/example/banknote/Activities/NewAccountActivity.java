@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class NewAccountActivity extends AppCompatActivity {
     private EditText etAccountPassword;
     private EditText etAccountNumber;
     private Button btnCreateAccount;
+    private ImageButton btnBackNewAccount;
     public static final String TAG = "NewAccountActivity";
 
 
@@ -43,6 +45,14 @@ public class NewAccountActivity extends AppCompatActivity {
         tvBankName = findViewById(R.id.tvBankName);
         etBalance = findViewById(R.id.etBalance);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
+        btnBackNewAccount = findViewById(R.id.btnBackNewAccount);
+
+        btnBackNewAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         tvBankName.setOnClickListener(new View.OnClickListener() {
             @Override

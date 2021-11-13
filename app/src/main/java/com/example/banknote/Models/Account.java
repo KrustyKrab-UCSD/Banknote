@@ -6,7 +6,7 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-@Parcel
+//@Parcel
 @ParseClassName("Account")
 public class Account extends ParseObject {
 
