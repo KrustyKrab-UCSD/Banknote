@@ -108,20 +108,20 @@ public class IndividualAccountActivity extends AppCompatActivity {
             }
         });
 
-        EditText etTransactionAmount = popupView.findViewById(R.id.etTransactionAmount);
+        TextView tvAmount = popupView.findViewById(R.id.tvAmount);
         EditText etDate = popupView.findViewById(R.id.etDate);
         EditText etDescription = popupView.findViewById(R.id.etDescription);
 
-        Log.i(TAG, "Transaction amount: " + etTransactionAmount.getText().toString());
+        Log.i(TAG, "Transaction amount: " + tvAmount.getText().toString());
         Log.i(TAG, "Date: " + etDate.getText().toString());
         Log.i(TAG, "Description: " + etDescription.getText().toString());
 
-        Button btnCreateTransaction = popupView.findViewById(R.id.btnCreateTransaction);
+        Button btnCreateTransaction = popupView.findViewById(R.id.btnCreate);
 
         btnCreateTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String transactionAmountText = etTransactionAmount.getText().toString();
+                String transactionAmountText = tvAmount.getText().toString();
                 if (transactionAmountText.isEmpty()) {
                     Toast.makeText(IndividualAccountActivity.this, "Transaction amount can't be empty!", Toast.LENGTH_SHORT).show();
                     return;
