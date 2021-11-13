@@ -69,6 +69,7 @@
             style="@style/NewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="+ NEW"
             app:layout_constraintBottom_toBottomOf="@id/tvTransactionsTitle"
             app:layout_constraintRight_toRightOf="parent"

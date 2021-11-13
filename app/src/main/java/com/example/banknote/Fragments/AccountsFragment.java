@@ -23,6 +23,7 @@ import com.example.banknote.databinding.FragmentAccountsBinding;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +115,8 @@ public class AccountsFragment extends Fragment {
 
     protected void queryAccounts() {
         ParseQuery<Account> query = ParseQuery.getQuery(Account.class);
+        query.include(Account.KEY_USER);
+        query.whereEqualTo(Account.KEY_USER, ParseUser.getCurrentUser());
         query.findInBackground(new FindCallback<Account>() {
             @Override
             public void done(List<Account> accounts, ParseException e) {

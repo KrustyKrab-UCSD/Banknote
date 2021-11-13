@@ -1,14 +1,16 @@
 package com.example.banknote.Models;
-import org.parceler.Parcel;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import org.parceler.ParcelConverter;
 
 import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-//@Parcel
 @ParseClassName("Account")
-public class Account extends ParseObject {
+public class Account extends ParseObject implements Parcelable {
 
     public static final String KEY_ACCOUNT_NAME = "accountName";
     public static final String KEY_BANK = "bank";
@@ -66,5 +68,4 @@ public class Account extends ParseObject {
     public void setAccountPassword(String accountPassword) {
         put(KEY_ACCOUNT_PASSWORD, accountPassword);
     }
-
 }

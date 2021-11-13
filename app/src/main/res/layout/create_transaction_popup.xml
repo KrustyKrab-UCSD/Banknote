@@ -33,7 +33,7 @@
     <EditText
         android:id="@+id/etTransactionAmount"
         style="@style/InputFieldNewAccount"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/background_edit_text"
         android:fontFamily="@font/ubuntu_regular"
@@ -61,7 +61,7 @@
     <EditText
         android:id="@+id/etDate"
         style="@style/InputFieldNewAccount"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/background_edit_text"
         android:fontFamily="@font/ubuntu_regular"
@@ -89,7 +89,7 @@
     <EditText
         android:id="@+id/etDescription"
         style="@style/InputFieldNewAccount"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/background_edit_text"
         android:fontFamily="@font/ubuntu_regular"

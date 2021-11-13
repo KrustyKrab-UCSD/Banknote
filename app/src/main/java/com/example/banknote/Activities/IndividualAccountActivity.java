@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,9 +24,11 @@ import com.example.banknote.Adapters.TransactionsAdapter;
 import com.example.banknote.Models.Account;
 import com.example.banknote.Models.Transaction;
 import com.example.banknote.R;
+import com.google.android.material.button.MaterialButton;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
@@ -37,9 +41,9 @@ import java.util.List;
 public class IndividualAccountActivity extends AppCompatActivity {
 
     public static final String TAG = "IndividualAccountAct";
-    private Button btnAddTransaction;
+    private MaterialButton btnAddTransaction;
     private ImageView btnBack;
-    private TextView tvAccountName;
+    private TextView tvTitle;
     private TextView tvBalance;
     private RecyclerView rvTransactions;
     private List<Transaction> allTransactions;
@@ -53,14 +57,15 @@ public class IndividualAccountActivity extends AppCompatActivity {
 
         btnAddTransaction = findViewById(R.id.btnAddTransaction);
         btnBack = findViewById(R.id.btnBack);
-        tvAccountName = findViewById(R.id.tvAccountName);
+        tvTitle = findViewById(R.id.tvTitle);
         tvBalance = findViewById(R.id.tvBalance);
         rvTransactions = findViewById(R.id.rvTransactions);
         allTransactions = new ArrayList<>();
 
-        account = Parcels.unwrap(getIntent().getParcelableExtra("account"));
-        tvAccountName.setText(account.getAccountName());
-        tvBalance.setText("$  " + account.getBalance());
+        account = getIntent().getParcelableExtra("account");
+        Log.i(TAG, "Account Name: " + account.getAccountName());
+        tvTitle.setText(account.getAccountName());
+        tvBalance.setText("$  " + account.getBalance() + "0");
 
         adapter = new TransactionsAdapter(IndividualAccountActivity.this, allTransactions);
         rvTransactions.setAdapter(adapter);
@@ -103,11 +108,15 @@ public class IndividualAccountActivity extends AppCompatActivity {
             }
         });
 
-        EditText etTransactionAmount = view.findViewById(R.id.etTransactionAmount);
-        EditText etDate = view.findViewById(R.id.etDate);
-        EditText etDescription = view.findViewById(R.id.etDescription);
+        EditText etTransactionAmount = popupView.findViewById(R.id.etTransactionAmount);
+        EditText etDate = popupView.findViewById(R.id.etDate);
+        EditText etDescription = popupView.findViewById(R.id.etDescription);
 
-        Button btnCreateTransaction = view.findViewById(R.id.btnCreateTransaction);
+        Log.i(TAG, "Transaction amount: " + etTransactionAmount.getText().toString());
+        Log.i(TAG, "Date: " + etDate.getText().toString());
+        Log.i(TAG, "Description: " + etDescription.getText().toString());
+
+        Button btnCreateTransaction = popupView.findViewById(R.id.btnCreateTransaction);
 
         btnCreateTransaction.setOnClickListener(new View.OnClickListener() {
             @Override

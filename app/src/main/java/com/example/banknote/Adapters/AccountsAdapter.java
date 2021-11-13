@@ -38,7 +38,7 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.ViewHo
                 public void onClick(View v) {
                     Toast.makeText(context, account.getAccountName() + " clicked!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, IndividualAccountActivity.class);
-                    i.putExtra("account", Parcels.wrap(account));
+                    i.putExtra("account", account);
                     context.startActivity(i);
                 }
             });
