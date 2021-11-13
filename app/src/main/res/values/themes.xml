@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Banknote" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -26,12 +26,15 @@
     </style>
     <style name="BlackButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="textAllCaps">true</item>
-        <item name="backgroundTint">#282828</item>
+        <item name="backgroundTint">@color/gray</item>
         <item name="cornerRadius">6dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="fontFamily">@font/ubuntu_medium</item>
         <item name="iconTint">@color/white</item>
         <item name="android:textSize">14sp</item>
+    </style>
+    <style name="RedButton" parent="@style/BlackButton">
+        <item name="backgroundTint">@color/red</item>
     </style>
     <style name="NewButton" parent="@style/BlackButton">
         <item name="android:minWidth">0dp</item>
