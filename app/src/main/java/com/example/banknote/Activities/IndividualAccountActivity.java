@@ -116,7 +116,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
         Log.i(TAG, "Date: " + etDate.getText().toString());
         Log.i(TAG, "Description: " + etDescription.getText().toString());
 
-        Button btnCreateTransaction = popupView.findViewById(R.id.btnCreate);
+        Button btnCreateTransaction = popupView.findViewById(R.id.btnCreateAccount);
 
         btnCreateTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
