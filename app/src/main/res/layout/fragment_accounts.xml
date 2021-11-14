@@ -12,9 +12,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAccounts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="28dp"
-            app:layout_constraintTop_toBottomOf="@id/tvMyAccounts" />
+            app:layout_constraintTop_toBottomOf="@id/tvMyAccounts"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/tvMyAccounts"
