@@ -48,6 +48,9 @@ public class SpendingAnalysisFragment extends Fragment {
     private List<Transaction> analysisRecyclerViewTransactions;
     private SpendingAnalysisTransactionsAdapter adapter;
     private ArrayList<PieEntry> accountsWithTransactions;
+    private ArrayList<Integer> colors;
+    private PieData data;
+    private PieDataSet dataSet;
     private long totalBalance = 0;
     private static final ParseUser user = ParseUser.getCurrentUser();
 
@@ -110,12 +113,33 @@ public class SpendingAnalysisFragment extends Fragment {
                     return;
                 }
 
+                if (accounts.size() == 0) {
+                    entries.add(new PieEntry(0, "No Accounts Found"));
+                }
+
                 for (Account account : accounts) {
                     if (account.getTotalTransactions() != 0) {
                         entries.add(new PieEntry(account.getTotalTransactions(), account.getAccountName()));
                     }
                     totalBalance += account.getBalance();
                 }
+
+                // Sets center text to total balance in Users Banknote account
+                pcPieChart.setCenterText(new SpannableString("$" + totalBalance));
+
+                dataSet = new PieDataSet(accountsWithTransactions, "Accounts");
+                dataSet.setColors(colors);
+                dataSet.setDrawValues(false);
+
+                data = new PieData(dataSet);
+
+                // Loads PieChart into pcPieChart view
+                pcPieChart.setData(data);
+                pcPieChart.invalidate();
+
+                // This is to animate the Pie Chart
+                // Controls the speed and type of animation
+                pcPieChart.animateY(750, Easing.EaseInOutCirc);
             }
         });
     }
@@ -123,53 +147,36 @@ public class SpendingAnalysisFragment extends Fragment {
     private void loadPieChart(View view) {
 
         pcPieChart = view.findViewById(R.id.pcPieChart);
+        accountsWithTransactions = new ArrayList<>();
 
         // Styles the PieChart
         pcPieChart.setDrawHoleEnabled(true);
         pcPieChart.setHoleRadius(90);
         pcPieChart.getDescription().setEnabled(false);
         pcPieChart.setDrawEntryLabels(false);
-
-        Log.i(TAG, "reached line 134");
-
-        accountsWithTransactions = new ArrayList<>();
-        //queryAccountsForPieChart(accountsWithTransactions);
-        Log.i(TAG, "reached line 136 " + accountsWithTransactions.size());
-        accountsWithTransactions.add(new PieEntry(1, "No"));
-        accountsWithTransactions.add(new PieEntry(2, "Accounts"));
-        accountsWithTransactions.add(new PieEntry(3, "Found"));
-
-        Log.i(TAG, "reached line 139 " + accountsWithTransactions.size());
-        // Sets center text to total balance in Users Banknote account
         pcPieChart.setCenterText(new SpannableString("$" + totalBalance));
         pcPieChart.setCenterTextSize(24);
         pcPieChart.setCenterTextColor(Color.BLACK);
         pcPieChart.setCenterTextTypeface(Typeface.DEFAULT_BOLD);
 
-        Log.i(TAG, "reached line 146");
         // To set colors for pie slices
-        ArrayList<Integer> colors = new ArrayList<>();
+        colors = new ArrayList<>();
         for (Integer color : ColorTemplate.MATERIAL_COLORS) {
             colors.add(color);
         }
 
-        Log.i(TAG, "reached line 153");
-        PieDataSet dataSet = new PieDataSet(accountsWithTransactions, "Accounts");
+        dataSet = new PieDataSet(accountsWithTransactions, "Accounts");
         dataSet.setColors(colors);
         dataSet.setDrawValues(false);
+        data = new PieData(dataSet);
 
-        Log.i(TAG, "reached line 158");
-        PieData data = new PieData(dataSet);
-
-        Log.i(TAG, "reached line 161");
         // Loads PieChart into pcPieChart view
         pcPieChart.setData(data);
         pcPieChart.invalidate();
 
-        Log.i(TAG, "reached line 166");
-        // This is to animate the Pie Chart
-        // Controls the speed and type of animation
-        pcPieChart.animateY(750, Easing.EaseInOutCirc);
+        // Important to update within this method
+        // Updates after the background thread is over
+        queryAccountsForPieChart(accountsWithTransactions);
     }
 
     private void loadBarChart(View view) {
