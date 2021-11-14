@@ -180,7 +180,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
         // Makes it easier for me lol
         transaction.setUser(ParseUser.getCurrentUser());
         // This is to keep track of the total transactions
-        // Makes setting up the PieChart more efficient
+        // Makes setting up the PieChart more efficient (no repeated iterations of transaction arrays)
         // Note to self: Remember to decrement count if we delete transactions
         account.increment(Account.KEY_TOTAL_TRANSACTIONS);
         account.saveInBackground();
