@@ -115,7 +115,7 @@ This is a mobile app that tracks a user's various bank accounts from multiple ba
 ### [BONUS] Digital Wireframes & Mockups
 <img src=https://user-images.githubusercontent.com/58927442/138538318-a14999b2-f647-4134-95fd-817ad14f47ca.png width=250><img src=https://user-images.githubusercontent.com/58927442/138540359-b104569d-e7a3-46d6-bef6-2e063804579b.png width=250><img src=https://user-images.githubusercontent.com/66866365/138610252-30ee2577-dac5-4e43-a2d4-3fccd824b93a.png width=250>
 <img src=https://user-images.githubusercontent.com/58927442/138538360-8f869e00-a5ab-466c-92e9-75d262948f96.png width=250><img src=https://user-images.githubusercontent.com/66866365/138610293-94bc53dc-505b-4432-a218-4453c9f6d831.png width=250><img src=https://user-images.githubusercontent.com/58927442/138540736-ba419806-f1a5-4fc2-9cf0-b138187fd819.png width=250>
-<img src=https://user-images.githubusercontent.com/66866365/138610315-3b9a3f75-eae3-4c0d-ae95-b535c8589dff.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538409-b8ef166e-cf32-4703-b84a-8a49950e5005.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538417-5dc7b2b2-bf14-410d-a75d-c8de9897056a.png width=250>
+<img src=https://user-images.githubusercontent.com/66866365/141664267-1edb4f01-3a66-4d4c-9978-86c7a03ceb81.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538409-b8ef166e-cf32-4703-b84a-8a49950e5005.png width=250><img src=https://user-images.githubusercontent.com/58927442/138538417-5dc7b2b2-bf14-410d-a75d-c8de9897056a.png width=250>
 <img src=https://user-images.githubusercontent.com/66866365/138610188-fffa77ee-8f16-4fbf-915e-311455f0b080.png width=250>
 
 
