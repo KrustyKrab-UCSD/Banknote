@@ -1,6 +1,7 @@
 package com.example.banknote.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,9 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         public void bind(Transaction transaction) {
             tvBalance.setText("$  00.00");
             tvDate.setText(transaction.getDate().toString());
+            if (!transaction.getIsSpending()) {
+                tvTransactionAmount.setTextColor(Color.parseColor("#118C4F"));
+            }
             tvTransactionAmount.setText("$" + transaction.getTransactionAmount());
 
         }

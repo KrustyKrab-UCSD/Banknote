@@ -13,6 +13,7 @@ public class Transaction extends ParseObject {
     public static final String KEY_BALANCE = "balance";
     public static final String KEY_ACCOUNT = "account";
     public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_USER = "user";
 
     public boolean getIsSpending() { return getBoolean(KEY_IS_SPENDING); }
 
@@ -33,5 +34,9 @@ public class Transaction extends ParseObject {
     public String getDescription() { return getString(KEY_DESCRIPTION); }
 
     public void setDescription(String description) { put(KEY_DESCRIPTION, description); }
+
+    public ParseObject getUser() { return getParseObject(KEY_USER); }
+
+    public void setUser(ParseObject account) { put(KEY_USER, account); }
 
 }

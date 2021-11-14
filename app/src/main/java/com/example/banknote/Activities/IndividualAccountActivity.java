@@ -176,6 +176,9 @@ public class IndividualAccountActivity extends AppCompatActivity {
         transaction.setDate(date);
         transaction.setDescription(description);
         transaction.setAccount(account);
+        // Added this to update a new User field I added in the Parse database - Arturo
+        // Makes it easier for me lol
+        transaction.setUser(ParseUser.getCurrentUser());
         transaction.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
