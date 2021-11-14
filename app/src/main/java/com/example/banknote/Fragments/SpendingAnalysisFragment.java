@@ -19,6 +19,7 @@ import com.example.banknote.BuildConfig;
 import com.example.banknote.Models.Account;
 import com.example.banknote.Models.Transaction;
 import com.example.banknote.R;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -52,7 +53,6 @@ public class SpendingAnalysisFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        pcPieChart = view.findViewById(R.id.pcPieChart);
         setRecyclerView(view);
     }
 
@@ -82,5 +82,13 @@ public class SpendingAnalysisFragment extends Fragment {
         rvAnalysisTransactions.setAdapter(adapter);
         rvAnalysisTransactions.setLayoutManager(new LinearLayoutManager(view.getContext()));
         queryTransactions();
+    }
+
+    private void setPieChart(View view) {
+        pcPieChart = view.findViewById(R.id.pcPieChart);
+    }
+
+    private void setBarChart(View view) {
+
     }
 }

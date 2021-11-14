@@ -1,10 +1,6 @@
 package com.example.banknote.Models;
-import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.parceler.ParcelConverter;
-
-import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -18,6 +14,7 @@ public class Account extends ParseObject implements Parcelable {
     public static final String KEY_BALANCE = "balance";
     public static final String KEY_ACCOUNT_NUMBER = "acountNumber"; // spelled wrong in the Parse database LOL
     public static final String KEY_ACCOUNT_PASSWORD = "accountPassword";
+    public static final String KEY_TOTAL_TRANSACTIONS = "totalTransactions";
 
     public Account() {}
 
@@ -68,4 +65,13 @@ public class Account extends ParseObject implements Parcelable {
     public void setAccountPassword(String accountPassword) {
         put(KEY_ACCOUNT_PASSWORD, accountPassword);
     }
+
+    public long getTotalTransactions() {
+        return getLong(KEY_TOTAL_TRANSACTIONS);
+    }
+
+    public void setTotalTransactions(long newTotal) {
+        put(KEY_TOTAL_TRANSACTIONS, newTotal);
+    }
+
 }

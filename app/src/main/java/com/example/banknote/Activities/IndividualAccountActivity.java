@@ -179,6 +179,11 @@ public class IndividualAccountActivity extends AppCompatActivity {
         // Added this to update a new User field I added in the Parse database - Arturo
         // Makes it easier for me lol
         transaction.setUser(ParseUser.getCurrentUser());
+        // This is to keep track of the total transactions
+        // Makes setting up the PieChart more efficient
+        // Note to self: Remember to decrement count if we delete transactions
+        account.increment(Account.KEY_TOTAL_TRANSACTIONS);
+        account.saveInBackground();
         transaction.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
