@@ -12,17 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.banknote.Models.Transaction;
 import com.example.banknote.R;
 
+import java.util.Date;
 import java.util.List;
 
 public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapter.ViewHolder> {
 
-    public interface OnLongClickListener {
-        void onItemLongClicked(int position);
+    public interface OnClickListener {
+        void onItemClicked(int position);
     }
 
     private Context context;
     private List<Transaction> transactions;
-    OnLongClickListener onLongClickListener;
+    private OnClickListener onClickListener;
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -30,9 +31,11 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         //private TextView tvBalance;
         private TextView tvDate;
         private TextView tvTransactionAmount;
+        private View view;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            view = itemView;
             tvDescription = itemView.findViewById(R.id.tvDescription);
             //tvBalance = itemView.findViewById(R.id.tvBalance);
             tvDate = itemView.findViewById(R.id.tvDate);
@@ -41,14 +44,24 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
 
         public void bind(Transaction transaction) {
             //tvBalance.setText("$  " + transaction.getTransactionAmount());
-            tvDate.setText(transaction.getDate().toString());
+            Date date = transaction.getDate();
+            tvDate.setText("" + (date.getMonth() + 1) + "/" + date.getDay() + "/" + (date.getYear() % 100));
             tvDescription.setText(transaction.getDescription());
             tvTransactionAmount.setText("$" + transaction.getTransactionAmount());
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.onItemClicked(getAdapterPosition());
+                    //return true;
+                }
+            });
 
         }
     }
 
-    public TransactionsAdapter(Context context, List<Transaction> transactions) {
+    public TransactionsAdapter(Context context, OnClickListener onCLickListener, List<Transaction> transactions) {
+        this.onClickListener = onCLickListener;
         this.context = context;
         this.transactions = transactions;
     }

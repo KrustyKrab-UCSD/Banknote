@@ -68,9 +68,25 @@ public class IndividualAccountActivity extends AppCompatActivity {
         tvTitle.setText(account.getAccountName());
         tvBalance.setText("$  " + account.getBalance() + "0");
 
-        adapter = new TransactionsAdapter(IndividualAccountActivity.this, allTransactions);
+        TransactionsAdapter.OnClickListener onClickListener = new TransactionsAdapter.OnClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Transaction transaction = allTransactions.get(position);
+                Log.i(TAG, rvTransactions.getChildAt(position).toString());
+                onButtonShowPopupWindowClick(rvTransactions.getChildAt(position),
+                        transaction.getTransactionAmount(),
+                        transaction.getIsSpending(),
+                        transaction.getDate(),
+                        transaction.getDescription(),
+                        position);
+            }
+        };
+
+        adapter = new TransactionsAdapter(IndividualAccountActivity.this, onClickListener, allTransactions);
         rvTransactions.setAdapter(adapter);
         rvTransactions.setLayoutManager(new LinearLayoutManager(IndividualAccountActivity.this));
+
+
 
         queryTransactions(account);
 
@@ -84,12 +100,13 @@ public class IndividualAccountActivity extends AppCompatActivity {
         btnAddTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onButtonShowPopupWindowClick(view);
+                Log.i(TAG, "View: " + view.toString());
+                onButtonShowPopupWindowClick(view, null, null, null, null, -1);
             }
         });
     }
 
-    public void onButtonShowPopupWindowClick(View view) {
+    public void onButtonShowPopupWindowClick(View view, Double amount, Boolean isSpending, Date date, String description, int position) {
         // inflate layout of popup window
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.create_transaction_popup, null);
@@ -109,16 +126,32 @@ public class IndividualAccountActivity extends AppCompatActivity {
             }
         });
 
-        TextView tvAmount = popupView.findViewById(R.id.etText);
+        EditText etTransactionAmount = popupView.findViewById(R.id.etTransactionAmount);
         CheckBox cbSpending = popupView.findViewById(R.id.cbSpending);
         EditText etDate = popupView.findViewById(R.id.etDate);
         EditText etDescription = popupView.findViewById(R.id.etDescription);
 
-        Log.i(TAG, "Transaction amount: " + tvAmount.getText().toString());
+        if (amount != null) {
+            etTransactionAmount.setText(amount.toString());
+        }
+
+        if (isSpending != null) {
+            cbSpending.setChecked(isSpending);
+        }
+
+        if (date != null) {
+            etDate.setText("" + (date.getMonth() + 1) + "/" + date.getDay() + "/" + (date.getYear() % 100));
+        }
+
+        if (description != null) {
+            etDescription.setText(description);
+        }
+
+        Log.i(TAG, "Transaction amount: " + etTransactionAmount.getText().toString());
         Log.i(TAG, "Date: " + etDate.getText().toString());
         Log.i(TAG, "Description: " + etDescription.getText().toString());
 
-        Button btnCreateTransaction = popupView.findViewById(R.id.btnCreate);
+        Button btnCreateTransaction = popupView.findViewById(R.id.btnCreateTransaction);
         Button btnCancel = popupView.findViewById(R.id.btnCancel);
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +164,8 @@ public class IndividualAccountActivity extends AppCompatActivity {
         btnCreateTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String transactionAmountText = tvAmount.getText().toString();
+
+                String transactionAmountText = etTransactionAmount.getText().toString();
                 if (transactionAmountText.isEmpty()) {
                     Toast.makeText(IndividualAccountActivity.this, "Transaction amount can't be empty!", Toast.LENGTH_SHORT).show();
                     return;
@@ -177,9 +211,33 @@ public class IndividualAccountActivity extends AppCompatActivity {
                     return;
                 }
 
-                saveTransaction(transactionAmount, cbSpending.isChecked(), date, description);
-                popupWindow.dismiss();
-                queryTransactions(account);
+                if (position == -1) {
+                    saveTransaction(transactionAmount, cbSpending.isChecked(), date, description);
+                    popupWindow.dismiss();
+                    queryTransactions(account);
+                }
+                else {
+                    Transaction transaction = allTransactions.get(position);
+                    transaction.setTransactionAmount(transactionAmount);
+                    transaction.setIsSpending(cbSpending.isChecked());
+                    transaction.setDate(date);
+                    transaction.setDescription(description);
+                    transaction.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                Log.e(TAG, "Error while saving", e);
+                                Toast.makeText(IndividualAccountActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            Log.i(TAG, "Transaction save was successful!");
+                        }
+                    });
+                    adapter.notifyDataSetChanged();
+                    popupWindow.dismiss();
+
+                }
+
             }
         });
 
@@ -223,6 +281,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
                     Log.i(TAG, "Transaction: " + transaction.getTransactionAmount() + " at " + transaction.getDate());
                 }
 
+                allTransactions.clear();
                 allTransactions.addAll(transactions);
                 adapter.notifyDataSetChanged();
             }
