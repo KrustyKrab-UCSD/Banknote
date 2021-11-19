@@ -1,5 +1,7 @@
 package com.example.banknote.Models;
 
+import android.os.Parcelable;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -7,7 +9,7 @@ import com.parse.ParseObject;
 import org.parceler.Parcel;
 
 @ParseClassName("Bank")
-public class Bank extends ParseObject {
+public class Bank extends ParseObject implements Parcelable {
 
    /*  Bank is a Read-Only model
     *  We are the ones of implementing OAuth in the future (one day...)
