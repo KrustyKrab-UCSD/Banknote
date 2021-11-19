@@ -20,4 +20,6 @@
     <string name="amount">Amount</string>
     <string name="date">Date</string>
     <string name="description">Description</string>
+    <string name="create_transaction">Create Transaction</string>
+    <string name="update_transaction">Update Transaction</string>
 </resources>

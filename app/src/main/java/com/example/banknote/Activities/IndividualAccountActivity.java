@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -108,7 +109,8 @@ public class IndividualAccountActivity extends AppCompatActivity {
             }
         });
 
-        TextView tvAmount = popupView.findViewById(R.id.tvAmount);
+        TextView tvAmount = popupView.findViewById(R.id.etText);
+        CheckBox cbSpending = popupView.findViewById(R.id.cbSpending);
         EditText etDate = popupView.findViewById(R.id.etDate);
         EditText etDescription = popupView.findViewById(R.id.etDescription);
 
@@ -117,6 +119,14 @@ public class IndividualAccountActivity extends AppCompatActivity {
         Log.i(TAG, "Description: " + etDescription.getText().toString());
 
         Button btnCreateTransaction = popupView.findViewById(R.id.btnCreate);
+        Button btnCancel = popupView.findViewById(R.id.btnCancel);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
 
         btnCreateTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +165,11 @@ public class IndividualAccountActivity extends AppCompatActivity {
                     Log.e(TAG, "Error in parsing date", e);
                     return;
                 }
+                catch (IndexOutOfBoundsException e) {
+                    Toast.makeText(IndividualAccountActivity.this, "Date is invalid!", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error in parsing date", e);
+                    return;
+                }
 
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()) {
@@ -162,14 +177,15 @@ public class IndividualAccountActivity extends AppCompatActivity {
                     return;
                 }
 
-                saveTransaction(transactionAmount, date, description);
+                saveTransaction(transactionAmount, cbSpending.isChecked(), date, description);
+                popupWindow.dismiss();
+                queryTransactions(account);
             }
         });
 
     }
 
-    private void saveTransaction(double transactionAmount, Date date, String description) {
-        boolean isSpending = transactionAmount < 0;
+    private void saveTransaction(double transactionAmount, boolean isSpending, Date date, String description) {
         Transaction transaction = new Transaction();
         transaction.setIsSpending(isSpending);
         transaction.setTransactionAmount(transactionAmount);

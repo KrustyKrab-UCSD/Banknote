@@ -99,11 +99,11 @@ public class NewAccountActivity extends AppCompatActivity {
                 }
 
                 String balanceString = etBalance.getText().toString();
-                Long balance = (long) 0;
+                double balance = (double) 0;
 
                 if (!balanceString.isEmpty()) {
                     try {
-                        balance = Long.parseLong(balanceString);
+                        balance = Double.parseDouble(balanceString);
                     }
                     catch (NumberFormatException e) {
                         Toast.makeText(NewAccountActivity.this, "Balance is invalid!", Toast.LENGTH_SHORT).show();
@@ -133,7 +133,7 @@ public class NewAccountActivity extends AppCompatActivity {
         }
     }
 
-    private void saveAccount(String accountName, String bank, String accountPassword, Long accountNumber, Long balance, ParseUser currentUser) {
+    private void saveAccount(String accountName, String bank, String accountPassword, Long accountNumber, double balance, ParseUser currentUser) {
         Account account = new Account();
         account.setAccountName(accountName);
         account.setBank(bank);

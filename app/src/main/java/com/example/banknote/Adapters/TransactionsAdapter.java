@@ -15,27 +15,34 @@ import com.example.banknote.R;
 import java.util.List;
 
 public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapter.ViewHolder> {
+
+    public interface OnLongClickListener {
+        void onItemLongClicked(int position);
+    }
+
     private Context context;
     private List<Transaction> transactions;
+    OnLongClickListener onLongClickListener;
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvDescription;
-        private TextView tvBalance;
+        //private TextView tvBalance;
         private TextView tvDate;
         private TextView tvTransactionAmount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvDescription = itemView.findViewById(R.id.tvDescription);
-            tvBalance = itemView.findViewById(R.id.tvBalance);
+            //tvBalance = itemView.findViewById(R.id.tvBalance);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvTransactionAmount = itemView.findViewById(R.id.tvTransactionAmount);
         }
 
         public void bind(Transaction transaction) {
-            tvBalance.setText("$  00.00");
+            //tvBalance.setText("$  " + transaction.getTransactionAmount());
             tvDate.setText(transaction.getDate().toString());
+            tvDescription.setText(transaction.getDescription());
             tvTransactionAmount.setText("$" + transaction.getTransactionAmount());
 
         }

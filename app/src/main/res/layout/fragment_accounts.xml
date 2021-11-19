@@ -31,13 +31,14 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddAccount"
+            style="@style/NewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/NewButton"
+            android:minHeight="48dp"
             android:text="+ NEW"
             app:layout_constraintBottom_toBottomOf="@id/tvMyAccounts"
-            app:layout_constraintTop_toTopOf="@id/tvMyAccounts"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvMyAccounts" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
