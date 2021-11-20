@@ -415,3 +415,8 @@ query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Setting>() {
 #### News Tab
 
 <img src='https://i.imgur.com/cAkfohE.gif' height='480'/>
+
+#### New Transaction Popup & Analysis Tab
+
+<img src='https://i.imgur.com/gnGhsu3.gif' height='480'/>
+
