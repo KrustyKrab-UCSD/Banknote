@@ -418,5 +418,6 @@ query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Setting>() {
 
 #### New Transaction Popup & Analysis Tab
 
-<img src='https://i.imgur.com/gnGhsu3.gif' height='480'/>
+<img src='https://i.imgur.com/IivC5mg.gif' height='480'/>
+<img src='https://i.imgur.com/MiH3h4g.gif' height='480'/>
 
