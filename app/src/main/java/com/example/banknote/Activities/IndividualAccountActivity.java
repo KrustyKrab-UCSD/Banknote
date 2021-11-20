@@ -134,7 +134,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
         });
 
         EditText etTransactionAmount = popupView.findViewById(R.id.etTransactionAmount);
-        CheckBox cbSpending = popupView.findViewById(R.id.cbSpending);
+//        CheckBox cbSpending = popupView.findViewById(R.id.cbSpending);
         EditText etDate = popupView.findViewById(R.id.etDate);
         EditText etDescription = popupView.findViewById(R.id.etDescription);
 
@@ -142,9 +142,9 @@ public class IndividualAccountActivity extends AppCompatActivity {
             etTransactionAmount.setText(amount.toString());
         }
 
-        if (isSpending != null) {
-            cbSpending.setChecked(isSpending);
-        }
+//        if (isSpending != null) {
+//            cbSpending.setChecked(isSpending);
+//        }
 
         if (date != null) {
             etDate.setText("" + (date.getMonth() + 1) + "/" + date.getDay() + "/" + (date.getYear() % 100));
@@ -219,14 +219,14 @@ public class IndividualAccountActivity extends AppCompatActivity {
                 }
 
                 if (position == -1) {
-                    saveTransaction(transactionAmount, cbSpending.isChecked(), date, description);
+//                    saveTransaction(transactionAmount, cbSpending.isChecked(), date, description);
                     popupWindow.dismiss();
                     queryTransactions(account);
                 }
                 else {
                     Transaction transaction = allTransactions.get(position);
                     transaction.setTransactionAmount(transactionAmount);
-                    transaction.setIsSpending(cbSpending.isChecked());
+//                    transaction.setIsSpending(cbSpending.isChecked());
                     transaction.setDate(date);
                     transaction.setDescription(description);
                     transaction.saveInBackground(new SaveCallback() {
