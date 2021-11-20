@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.banknote.Models.Transaction;
 import com.example.banknote.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         private TextView tvTransactionAmount;
         private View view;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
@@ -45,9 +48,20 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         public void bind(Transaction transaction) {
             //tvBalance.setText("$  " + transaction.getTransactionAmount());
             Date date = transaction.getDate();
-            tvDate.setText("" + (date.getMonth() + 1) + "/" + date.getDay() + "/" + (date.getYear() % 100));
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            String dateString = new SimpleDateFormat("MMM dd, yyyy").format(calendar.getTime());
+            tvDate.setText(dateString);
             tvDescription.setText(transaction.getDescription());
             tvTransactionAmount.setText("$" + transaction.getTransactionAmount());
+
+            if (transaction.getIsSpending()) {
+                tvTransactionAmount.setTextColor(context.getResources().getColor(R.color.red_negative));
+                tvTransactionAmount.setText(String.format("$  (%.2f)", transaction.getTransactionAmount()));
+            } else {
+                tvTransactionAmount.setTextColor(context.getResources().getColor(R.color.green_positive));
+                tvTransactionAmount.setText(String.format("$  %.2f", transaction.getTransactionAmount()));
+            }
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

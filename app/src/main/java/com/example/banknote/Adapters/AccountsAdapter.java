@@ -36,7 +36,7 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.ViewHo
             binding.container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, account.getAccountName() + " clicked!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, account.getAccountName() + " clicked!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, IndividualAccountActivity.class);
                     i.putExtra("account", account);
                     context.startActivity(i);

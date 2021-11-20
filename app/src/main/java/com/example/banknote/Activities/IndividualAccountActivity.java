@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,12 +81,13 @@ public class IndividualAccountActivity extends AppCompatActivity {
             public void onItemClicked(int position) {
                 Transaction transaction = allTransactions.get(position);
                 Log.i(TAG, rvTransactions.getChildAt(position).toString());
-                onButtonShowPopupWindowClick(rvTransactions.getChildAt(position),
-                        transaction.getTransactionAmount(),
-                        transaction.getIsSpending(),
-                        transaction.getDate(),
-                        transaction.getDescription(),
-                        position);
+//                onButtonShowPopupWindowClick(rvTransactions.getChildAt(position),
+//                        transaction.getTransactionAmount(),
+//                        transaction.getIsSpending(),
+//                        transaction.getDate(),
+//                        transaction.getDescription(),
+//                        position);
+                showAddTransactionDialog(transaction, position);
             }
         };
 
@@ -107,8 +110,8 @@ public class IndividualAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "View: " + view.toString());
-                onButtonShowPopupWindowClick(view, null, null, null, null, -1);
-//                showAddTransactionDialog(true);
+//                onButtonShowPopupWindowClick(view, null, null, null, null, -1);
+                showAddTransactionDialog(null, -1);
             }
         });
     }
@@ -134,7 +137,10 @@ public class IndividualAccountActivity extends AppCompatActivity {
         });
 
         EditText etTransactionAmount = popupView.findViewById(R.id.etTransactionAmount);
-//        CheckBox cbSpending = popupView.findViewById(R.id.cbSpending);
+        RadioGroup rbGroup = popupView.findViewById(R.id.rbGroup);
+        RadioButton rbSpending = popupView.findViewById(R.id.rbSpending);
+        RadioButton rbSaving = popupView.findViewById(R.id.rbSaving);
+
         EditText etDate = popupView.findViewById(R.id.etDate);
         EditText etDescription = popupView.findViewById(R.id.etDescription);
 
@@ -142,9 +148,13 @@ public class IndividualAccountActivity extends AppCompatActivity {
             etTransactionAmount.setText(amount.toString());
         }
 
-//        if (isSpending != null) {
-//            cbSpending.setChecked(isSpending);
-//        }
+        if (isSpending != null) {
+            if (isSpending) {
+                rbSpending.setChecked(true);
+            } else {
+                rbSaving.setChecked(true);
+            }
+        }
 
         if (date != null) {
             etDate.setText("" + (date.getMonth() + 1) + "/" + date.getDay() + "/" + (date.getYear() % 100));
@@ -219,16 +229,18 @@ public class IndividualAccountActivity extends AppCompatActivity {
                 }
 
                 if (position == -1) {
-//                    saveTransaction(transactionAmount, cbSpending.isChecked(), date, description);
+                    saveTransaction(transactionAmount,
+                            rbGroup.getCheckedRadioButtonId() == R.id.rbSpending, date, description);
                     popupWindow.dismiss();
                     queryTransactions(account);
                 }
                 else {
                     Transaction transaction = allTransactions.get(position);
                     transaction.setTransactionAmount(transactionAmount);
-//                    transaction.setIsSpending(cbSpending.isChecked());
+                    transaction.setIsSpending(rbGroup.getCheckedRadioButtonId() == R.id.rbSpending);
                     transaction.setDate(date);
                     transaction.setDescription(description);
+                    transaction.setUser(ParseUser.getCurrentUser());
                     transaction.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
@@ -257,6 +269,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
         transaction.setDate(date);
         transaction.setDescription(description);
         transaction.setAccount(account);
+        transaction.setUser(account.getUser());
         transaction.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -295,7 +308,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
         });
     }
 
-    private void showAddTransactionDialog(Boolean isCreate) {
+    private void showAddTransactionDialog(Transaction transaction, int position) {
         if (newTransactionDialog == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(IndividualAccountActivity.this);
             View view = LayoutInflater.from(this).inflate(
@@ -311,17 +324,36 @@ public class IndividualAccountActivity extends AppCompatActivity {
             }
 
             TextView title = view.findViewById(R.id.Title);
+            EditText etTransactionAmount = view.findViewById(R.id.etTransactionAmount);
+            RadioGroup rbGroup = view.findViewById(R.id.rbGroup);
+            RadioButton rbSpending = view.findViewById(R.id.rbSpending);
+            RadioButton rbSaving = view.findViewById(R.id.rbSaving);
+            EditText etDate = view.findViewById(R.id.etDate);
+            EditText etDescription = view.findViewById(R.id.etDescription);
 
-            if (isCreate) {
-                title.setText("Create Transaction");
-            } else {
+            if (transaction != null) {
                 title.setText("Update Transaction");
+                etTransactionAmount.setText(transaction.getTransactionAmount().toString());
+                etDate.setText("" + (transaction.getDate().getMonth() + 1) + "/" +
+                        transaction.getDate().getDay() + "/" + (transaction.getDate().getYear() % 100));
+                etDescription.setText(transaction.getDescription());
+                if (transaction.getIsSpending()) {
+                    rbSpending.setChecked(true);
+                } else {
+                    rbSaving.setChecked(true);
+                }
             }
 
             view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i(TAG, "Transaction Dialog - Cancel pressed");
+
+                    etDate.setText("");
+                    etDescription.setText("");
+                    etTransactionAmount.setText("00.00");
+                    rbSpending.setChecked(true);
+
                     newTransactionDialog.dismiss();
                 }
             });
@@ -330,7 +362,93 @@ public class IndividualAccountActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Log.i(TAG, "Transaction Dialog - Create pressed");
-                    newTransactionDialog.dismiss();
+
+                    String transactionAmountText = etTransactionAmount.getText().toString();
+                    if (transactionAmountText.isEmpty()) {
+                        Toast.makeText(IndividualAccountActivity.this, "Transaction amount can't be empty!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    double transactionAmount;
+                    try {
+                        transactionAmount = Double.parseDouble(transactionAmountText);
+                    }
+                    catch (NumberFormatException e) {
+                        Toast.makeText(IndividualAccountActivity.this, "Transaction amount is invalid!", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error in parsing transaction amount", e);
+                        return;
+                    }
+
+                    String dateString = etDate.getText().toString();
+                    if (dateString.isEmpty()) {
+                        Toast.makeText(IndividualAccountActivity.this, "Date can't be empty!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    String[] dateSplit = dateString.split("/");
+                    Date date;
+                    try {
+                        int year = Integer.parseInt(dateSplit[2]);
+                        int month = Integer.parseInt(dateSplit[0]);
+                        int day = Integer.parseInt(dateSplit[1]);
+                        date = new Date(year, month, day);
+                    }
+                    catch (NumberFormatException e) {
+                        Toast.makeText(IndividualAccountActivity.this, "Date is invalid!", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error in parsing date", e);
+                        return;
+                    }
+                    catch (IndexOutOfBoundsException e) {
+                        Toast.makeText(IndividualAccountActivity.this, "Date is invalid!", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error in parsing date", e);
+                        return;
+                    }
+
+                    String description = etDescription.getText().toString();
+                    if (description.isEmpty()) {
+                        Toast.makeText(IndividualAccountActivity.this, "Description can't be empty!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (position == -1) {
+                        saveTransaction(transactionAmount,
+                                rbGroup.getCheckedRadioButtonId() == R.id.rbSpending, date, description);
+
+                        etDate.setText("");
+                        etDescription.setText("");
+                        etTransactionAmount.setText("00.00");
+                        rbSpending.setChecked(true);
+
+                        newTransactionDialog.dismiss();
+                        queryTransactions(account);
+                    }
+                    else {
+                        Transaction transaction = allTransactions.get(position);
+                        transaction.setTransactionAmount(transactionAmount);
+                        transaction.setIsSpending(rbGroup.getCheckedRadioButtonId() == R.id.rbSpending);
+                        transaction.setDate(date);
+                        transaction.setDescription(description);
+                        transaction.setUser(ParseUser.getCurrentUser());
+                        transaction.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e != null) {
+                                    Log.e(TAG, "Error while saving", e);
+                                    Toast.makeText(IndividualAccountActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                Log.i(TAG, "Transaction save was successful!");
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
+
+                        etDate.setText("");
+                        etDescription.setText("");
+                        etTransactionAmount.setText("00.00");
+                        rbSpending.setChecked(true);
+
+                        newTransactionDialog.dismiss();
+
+                    }
                 }
             });
         }

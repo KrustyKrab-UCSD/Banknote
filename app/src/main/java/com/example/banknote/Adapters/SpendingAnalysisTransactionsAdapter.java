@@ -14,6 +14,9 @@ import com.example.banknote.Models.Transaction;
 import com.example.banknote.R;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class SpendingAnalysisTransactionsAdapter extends RecyclerView.Adapter<SpendingAnalysisTransactionsAdapter.ViewHolder> {
@@ -58,15 +61,28 @@ public class SpendingAnalysisTransactionsAdapter extends RecyclerView.Adapter<Sp
         }
 
         public void bind(Transaction transaction) {
-            String sign = "-";
+//            String sign = "-";
             DecimalFormat formatter = new DecimalFormat("#,###.00");
-            tvAnalysisDate.setText(transaction.getDate().toString());
-            if (!transaction.getIsSpending()) {
-                tvAnalysisTransactionAmount.setTextColor(Color.parseColor("#118C4F"));
-                sign = "";
+
+            Date date = transaction.getDate();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            String dateString = new SimpleDateFormat("MMM dd, yyyy").format(calendar.getTime());
+
+            tvAnalysisDate.setText(dateString);
+//            if (!transaction.getIsSpending()) {
+//                tvAnalysisTransactionAmount.setTextColor(Color.parseColor("#118C4F"));
+//                sign = "";
+//            }
+            if (transaction.getIsSpending()) {
+                tvAnalysisTransactionAmount.setTextColor(context.getResources().getColor(R.color.red_negative));
+                tvAnalysisTransactionAmount.setText(String.format("$  (%.2f)", transaction.getTransactionAmount()));
+            } else {
+                tvAnalysisTransactionAmount.setTextColor(context.getResources().getColor(R.color.green_positive));
+                tvAnalysisTransactionAmount.setText(String.format("$  %.2f", transaction.getTransactionAmount()));
             }
             double transactionAmount = Double.parseDouble(transaction.getTransactionAmount().toString());
-            tvAnalysisTransactionAmount.setText(sign + "$" + formatter.format(transactionAmount));
+//            tvAnalysisTransactionAmount.setText(sign + "$" + formatter.format(transactionAmount));
             tvAnalysisAccountName.setText(transaction.getAccount().getString("accountName"));
         }
     }

@@ -24,9 +24,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_heading"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </TextView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pcPieChart"

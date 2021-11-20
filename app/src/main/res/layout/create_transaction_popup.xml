@@ -16,7 +16,7 @@
         style="@style/Heading"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/create_update_transaction"
+        android:text="Create Transaction"
         android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

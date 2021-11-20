@@ -160,6 +160,7 @@ public class SpendingAnalysisFragment extends Fragment {
         // Styles the PieChart
         pcPieChart.setDrawHoleEnabled(true);
         pcPieChart.setHoleRadius(90);
+        pcPieChart.setDrawRoundedSlices(true);
         pcPieChart.getDescription().setEnabled(false);
         pcPieChart.setDrawEntryLabels(false);
 
