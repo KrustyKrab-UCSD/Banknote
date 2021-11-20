@@ -37,6 +37,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class SpendingAnalysisFragment extends Fragment {
     private ArrayList<Integer> colors;
     private PieData data;
     private PieDataSet dataSet;
-    private long totalBalance = 0;
+    private double totalBalance = 0;
     private static final ParseUser user = ParseUser.getCurrentUser();
 
     public SpendingAnalysisFragment() {
@@ -104,6 +105,7 @@ public class SpendingAnalysisFragment extends Fragment {
     private void queryAccountsForPieChart(List<PieEntry> entries) {
         // Sets PieChart Values and sums up total balance in Users Banknote account
         ParseQuery<Account> query = ParseQuery.getQuery(Account.class);
+        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.whereEqualTo(Account.KEY_USER, user);
         query.findInBackground(new FindCallback<Account>() {
             @Override
@@ -124,8 +126,14 @@ public class SpendingAnalysisFragment extends Fragment {
                     totalBalance += account.getBalance();
                 }
 
+                // formats totalBalance to a more appropriate string form (#,###.00)
+                DecimalFormat formatter = new DecimalFormat("#,###.00");
+
                 // Sets center text to total balance in Users Banknote account
-                pcPieChart.setCenterText(new SpannableString("$" + totalBalance));
+                pcPieChart.setCenterText(new SpannableString("$" + formatter.format(totalBalance)));
+                pcPieChart.setCenterTextSize(24);
+                pcPieChart.setCenterTextColor(Color.BLACK);
+                pcPieChart.setCenterTextTypeface(Typeface.DEFAULT_BOLD);
 
                 dataSet = new PieDataSet(accountsWithTransactions, "Accounts");
                 dataSet.setColors(colors);
@@ -154,10 +162,6 @@ public class SpendingAnalysisFragment extends Fragment {
         pcPieChart.setHoleRadius(90);
         pcPieChart.getDescription().setEnabled(false);
         pcPieChart.setDrawEntryLabels(false);
-        pcPieChart.setCenterText(new SpannableString("$" + totalBalance));
-        pcPieChart.setCenterTextSize(24);
-        pcPieChart.setCenterTextColor(Color.BLACK);
-        pcPieChart.setCenterTextTypeface(Typeface.DEFAULT_BOLD);
 
         // To set colors for pie slices
         colors = new ArrayList<>();
