@@ -1,16 +1,20 @@
 package com.example.banknote.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -50,6 +54,8 @@ public class IndividualAccountActivity extends AppCompatActivity {
     private List<Transaction> allTransactions;
     private TransactionsAdapter adapter;
     private Account account;
+
+    private AlertDialog newTransactionDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +108,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i(TAG, "View: " + view.toString());
                 onButtonShowPopupWindowClick(view, null, null, null, null, -1);
+//                showAddTransactionDialog(true);
             }
         });
     }
@@ -112,7 +119,7 @@ public class IndividualAccountActivity extends AppCompatActivity {
         View popupView = inflater.inflate(R.layout.create_transaction_popup, null);
 
         // create popup window
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
@@ -286,5 +293,48 @@ public class IndividualAccountActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void showAddTransactionDialog(Boolean isCreate) {
+        if (newTransactionDialog == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(IndividualAccountActivity.this);
+            View view = LayoutInflater.from(this).inflate(
+                    R.layout.create_transaction_popup,
+                    (ViewGroup) findViewById(R.id.newTransactionContainer)
+            );
+            builder.setView(view);
+
+            newTransactionDialog = builder.create();
+
+            if (newTransactionDialog.getWindow() != null) {
+                newTransactionDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            }
+
+            TextView title = view.findViewById(R.id.Title);
+
+            if (isCreate) {
+                title.setText("Create Transaction");
+            } else {
+                title.setText("Update Transaction");
+            }
+
+            view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i(TAG, "Transaction Dialog - Cancel pressed");
+                    newTransactionDialog.dismiss();
+                }
+            });
+
+            view.findViewById(R.id.btnCreateTransaction).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i(TAG, "Transaction Dialog - Create pressed");
+                    newTransactionDialog.dismiss();
+                }
+            });
+        }
+
+        newTransactionDialog.show();
     }
 }
