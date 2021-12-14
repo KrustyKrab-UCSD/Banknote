@@ -36,16 +36,6 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new AccountsFragment();
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
 
-        binding.btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AccountUser.logOut();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         bottomNavigationView = binding.bottomNavigation;
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

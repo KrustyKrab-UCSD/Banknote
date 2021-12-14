@@ -51,10 +51,10 @@
         android:layout="@layout/preference_list"/>
 
     <Preference
-        android:title="Log Out"
+        android:id="@+id/prefLogOut"
         android:key="log_out"
-        android:layout="@layout/preference_logout" />
-
+        android:layout="@layout/preference_logout"
+        android:title="Log Out" />
 
 
 </PreferenceScreen>
