@@ -421,3 +421,6 @@ query.getInBackground("xWMyZ4YEGZ (objectId)", new GetCallback<Setting>() {
 <img src='https://i.imgur.com/IivC5mg.gif' height='480'/>
 <img src='https://i.imgur.com/MiH3h4g.gif' height='480'/>
 
+#### Settings 
+
+<img src='https://i.imgur.com/QC7xwe4.gif' height='480'/>
